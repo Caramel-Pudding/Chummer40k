@@ -1,0 +1,45 @@
+{
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "project": "./tsconfig.json"
+    },
+    "extends": [
+      "airbnb-typescript",
+      "airbnb/hooks",
+      "plugin:jsx-a11y/recommended",
+      "plugin:@typescript-eslint/recommended",
+      "plugin:@typescript-eslint/recommended-requiring-type-checking",
+      "plugin:sonarjs/recommended",
+      "plugin:unicorn/recommended",
+      "plugin:jest/recommended",
+      "plugin:jest/style",
+      "plugin:prettier/recommended"
+    ],
+    "rules": {
+      "import/prefer-default-export": "off",
+      "react/react-in-jsx-scope": "off",
+      "react/prop-types": "off",
+      "react/require-default-props": "off",
+      "react/jsx-filename-extension": "off",
+      "react/jsx-sort-props": ["error", {
+        "ignoreCase": true,
+        "callbacksLast": true,
+        "shorthandFirst": false,
+        "shorthandLast": false,
+        "noSortAlphabetically": false,
+        "reservedFirst": true
+      }],
+      "react/jsx-props-no-spreading": "off",
+      "jsx-a11y/label-has-associated-control": [ "error", {
+        "assert": "nesting"
+      }],
+      "jsx-props-no-spreading": "off",
+      "unicorn/prevent-abbreviations": "off",
+      "unicorn/no-null": "off",
+      "sonarjs/no-duplicate-string": "off",
+      "jsx-a11y/anchor-is-valid": "off"
+    },
+    "globals": {
+      "React": "writable"
+    }
+  }
