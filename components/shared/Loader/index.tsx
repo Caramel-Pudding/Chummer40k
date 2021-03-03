@@ -1,7 +1,5 @@
 import React from "react";
 
-const Loader: React.FC = () => {
-  return <aside>Loading...</aside>;
-};
-
-export default React.memo(Loader);
+export const Loader: React.FC = React.memo(() => {
+  return <div>Loading...</div>;
+});
