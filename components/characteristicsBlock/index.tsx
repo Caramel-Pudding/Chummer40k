@@ -1,17 +1,18 @@
 import React from "react";
 import classnames from "classnames";
 
-import { BCCharacteristics } from "./consts";
+import { useAppSelector } from "../../hooks/redux";
 import { CharacteristicField } from "./subComponents/field";
-import { getCharacteristicRepresentation } from "./helpers";
 
 export const CharacteristicsBlock: React.FC = React.memo(() => {
+  const characteristics = useAppSelector((state) => state.characteristics);
+
   return (
     <section className={classnames("flex", "flex-row")}>
-      {Object.values(BCCharacteristics).map((characteristic) => (
+      {Object.keys(characteristics).map((characteristicName) => (
         <CharacteristicField
-          key={characteristic}
-          name={getCharacteristicRepresentation(characteristic)}
+          key={characteristicName}
+          name={characteristicName}
         />
       ))}
     </section>

@@ -1,27 +1,35 @@
 import React, { ReactText, useState } from "react";
 import classnames from "classnames";
 
+import { useAppDispatch, useAppSelector } from "../../../../hooks/redux";
+import {
+  setTempValueModifier,
+  changeTempValueModifierByAmount,
+  setTempBonusModifier,
+  changeTempBonusModifierByAmount,
+} from "../../../../redux/features/characteristics/slice";
+
+import { BCCharacteristics } from "../../../../redux/features/characteristics/consts";
+
 import { Modal } from "../../../shared/Modal";
 import { BasicField } from "../../../shared/BasicField";
 
 interface TempChangeModalProps {
+  name: BCCharacteristics;
   isOpen: boolean;
-  tempValueModifier: ReactText;
-  tempBonusModifier: ReactText;
-  tempValueSetter: React.Dispatch<React.SetStateAction<React.ReactText>>;
-  tempBonuseSetter: React.Dispatch<React.SetStateAction<React.ReactText>>;
   handleModalClose: React.Dispatch<React.SetStateAction<void>>;
 }
 
 export const TempChangeModal: React.FC<TempChangeModalProps> = React.memo(
-  ({
-    isOpen,
-    tempValueModifier,
-    tempBonusModifier,
-    tempValueSetter,
-    tempBonuseSetter,
-    handleModalClose,
-  }) => {
+  ({ isOpen, name, handleModalClose }) => {
+    const dispatch = useAppDispatch();
+    const tempValueModifier = useAppSelector(
+      (state) => state.characteristics[name].tempValueModifier
+    );
+    const tempBonusModifier = useAppSelector(
+      (state) => state.characteristics[name].tempBonusModifier
+    );
+
     const [value, setValue] = useState<ReactText>(0);
     const [bonus, setBonus] = useState<ReactText>(0);
 
@@ -43,15 +51,25 @@ export const TempChangeModal: React.FC<TempChangeModalProps> = React.memo(
     };
 
     const applyHandler = () => {
-      tempValueSetter((prevValue) => Number(prevValue) + Number(value));
-      tempBonuseSetter((previBonus) => Number(previBonus) + Number(bonus));
+      dispatch(
+        changeTempValueModifierByAmount({
+          characteristic: name,
+          value: Number(value),
+        })
+      );
+      dispatch(
+        changeTempBonusModifierByAmount({
+          characteristic: name,
+          value: Number(bonus),
+        })
+      );
       resetInputs();
       handleModalClose();
     };
 
     const resetHandler = () => {
-      tempValueSetter(0);
-      tempBonuseSetter(0);
+      dispatch(setTempValueModifier({ characteristic: name, value: 0 }));
+      dispatch(setTempBonusModifier({ characteristic: name, value: 0 }));
       resetInputs();
       handleModalClose();
     };

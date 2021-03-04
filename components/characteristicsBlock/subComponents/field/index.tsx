@@ -1,20 +1,32 @@
-import React, { ReactText, useState } from "react";
+import React, { useState } from "react";
 import classnames from "classnames";
 
+import { useAppDispatch, useAppSelector } from "../../../../hooks/redux";
+import {
+  createCharacteristicTotalBonuslectorInstance,
+  createCharacteristicTotalValueSelectorInstance,
+  setValue,
+} from "../../../../redux/features/characteristics/slice";
+
 import { TempChangeModal } from "../tempChangeModal";
-import { calculateCharacteristicBonus } from "./helpers";
+import { BCCharacteristics } from "../../../../redux/features/characteristics/consts";
+import { getCharacteristicRepresentation } from "../../helpers";
 
 interface CharacteristicFieldProps {
-  name: string;
-  initialValue?: string;
-  bonusModifier?: number;
+  name: BCCharacteristics;
 }
 
 export const CharacteristicField: React.FC<CharacteristicFieldProps> = React.memo(
-  ({ name, initialValue = 0, bonusModifier = 0 }) => {
-    const [value, setValue] = useState<ReactText>(initialValue);
-    const [tempValueModifier, setTempValueModifier] = useState<ReactText>(0);
-    const [tempBonusModifier, setTempBonusModifier] = useState<ReactText>(0);
+  ({ name }) => {
+    const dispatch = useAppDispatch();
+
+    const characteristicTotalValue = useAppSelector(
+      createCharacteristicTotalValueSelectorInstance(name)
+    );
+    const characteristicTotalBonus = useAppSelector(
+      createCharacteristicTotalBonuslectorInstance(name)
+    );
+
     const [isTempChangeModalOpen, setIsTempChangeModalOpen] = useState<boolean>(
       false
     );
@@ -22,41 +34,38 @@ export const CharacteristicField: React.FC<CharacteristicFieldProps> = React.mem
     const valueInputHandler = (
       event: React.FormEvent<HTMLInputElement>
     ): void => {
-      setValue(event.currentTarget.value);
+      dispatch(
+        setValue({
+          characteristic: name,
+          value: Number(event.currentTarget.value),
+        })
+      );
     };
 
     const tempChangeClickHandler = () => {
       setIsTempChangeModalOpen(true);
     };
-    const totalValue: ReactText =
-      value === "" ? value : Number(value) + Number(tempValueModifier);
-
-    const totalBonus =
-      calculateCharacteristicBonus({
-        value: Number(totalValue),
-      }) +
-      bonusModifier +
-      Number(tempBonusModifier);
 
     return (
       <>
         <TempChangeModal
           handleModalClose={() => setIsTempChangeModalOpen(false)}
           isOpen={isTempChangeModalOpen}
-          tempBonuseSetter={setTempBonusModifier}
-          tempBonusModifier={tempBonusModifier}
-          tempValueModifier={tempValueModifier}
-          tempValueSetter={setTempValueModifier}
+          name={name}
         />
         <div className={classnames("flex", "flex-col")}>
           <div>
-            <span className={classnames("text-xs")}>{name}</span>
-            <span className={classnames("text-xs")}>{totalBonus}</span>
+            <span className={classnames("text-xs")}>
+              {getCharacteristicRepresentation(name)}
+            </span>
+            <span className={classnames("text-xs")}>
+              {characteristicTotalBonus}
+            </span>
           </div>
           <input
             className={classnames("w-10/12")}
             type="number"
-            value={totalValue}
+            value={characteristicTotalValue || ""}
             onChange={valueInputHandler}
           />
           <button
