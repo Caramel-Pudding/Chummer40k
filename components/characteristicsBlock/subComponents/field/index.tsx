@@ -9,22 +9,22 @@ import {
 } from "../../../../redux/features/characteristics/slice";
 
 import { TempChangeModal } from "../tempChangeModal";
-import { BCCharacteristics } from "../../../../redux/features/characteristics/consts";
+import { BCCharacteristic } from "../../../../redux/features/characteristics/consts";
 import { getCharacteristicRepresentation } from "../../helpers";
 
 interface CharacteristicFieldProps {
-  name: BCCharacteristics;
+  characteristicName: BCCharacteristic;
 }
 
 export const CharacteristicField: React.FC<CharacteristicFieldProps> = React.memo(
-  ({ name }) => {
+  ({ characteristicName }) => {
     const dispatch = useAppDispatch();
 
     const characteristicTotalValue = useAppSelector(
-      createCharacteristicTotalValueSelectorInstance(name)
+      createCharacteristicTotalValueSelectorInstance(characteristicName)
     );
     const characteristicTotalBonus = useAppSelector(
-      createCharacteristicTotalBonuslectorInstance(name)
+      createCharacteristicTotalBonuslectorInstance(characteristicName)
     );
 
     const [isTempChangeModalOpen, setIsTempChangeModalOpen] = useState<boolean>(
@@ -36,7 +36,7 @@ export const CharacteristicField: React.FC<CharacteristicFieldProps> = React.mem
     ): void => {
       dispatch(
         setValue({
-          characteristic: name,
+          characteristic: characteristicName,
           value: Number(event.currentTarget.value),
         })
       );
@@ -49,14 +49,14 @@ export const CharacteristicField: React.FC<CharacteristicFieldProps> = React.mem
     return (
       <>
         <TempChangeModal
+          characteristicName={characteristicName}
           handleModalClose={() => setIsTempChangeModalOpen(false)}
           isOpen={isTempChangeModalOpen}
-          name={name}
         />
         <div className={classnames("flex", "flex-col")}>
           <div>
             <span className={classnames("text-xs")}>
-              {getCharacteristicRepresentation(name)}
+              {getCharacteristicRepresentation(characteristicName)}
             </span>
             <span className={classnames("text-xs")}>
               {characteristicTotalBonus}

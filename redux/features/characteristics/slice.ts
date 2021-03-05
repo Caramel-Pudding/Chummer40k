@@ -1,15 +1,17 @@
 import { createSlice, PayloadAction, createSelector } from "@reduxjs/toolkit";
 
+// eslint-disable-next-line import/no-cycle
 import { RootState } from "../../store";
 import { CharacteristicInternals, CharacteristicChangePayload } from "./types";
-import { BCCharacteristics } from "./consts";
+import { BCCharacteristic } from "./consts";
 import { calculateCharacteristicBonus } from "./helpers";
+import { stringEnumToArrayOfNames } from "../../../utilities/arrays";
 
 // Define the initial state using that type
 const getInitialState = (
-  characteristicsSet: typeof BCCharacteristics
-): Record<BCCharacteristics, CharacteristicInternals> => {
-  return Object.keys(characteristicsSet).reduce(
+  characteristicsSet: typeof BCCharacteristic
+): Record<BCCharacteristic, CharacteristicInternals> => {
+  return stringEnumToArrayOfNames(characteristicsSet).reduce(
     (state, characteristic) => ({
       ...state,
       [characteristic]: {
@@ -19,14 +21,14 @@ const getInitialState = (
         tempBonusModifier: 0,
       },
     }),
-    {} as Record<BCCharacteristics, CharacteristicInternals>
+    {} as Record<BCCharacteristic, CharacteristicInternals>
   );
 };
 
 export const characteristicsSlice = createSlice({
   name: "Characteristics",
   // `createSlice` will infer the state type from the `initialState` argument
-  initialState: getInitialState(BCCharacteristics),
+  initialState: getInitialState(BCCharacteristic),
   /* eslint-disable no-param-reassign */
   reducers: {
     setValue: (state, action: PayloadAction<CharacteristicChangePayload>) => {
@@ -85,27 +87,21 @@ export const characteristicsSlice = createSlice({
 });
 
 export const createCharacteristicTotalValueSelectorInstance = (
-  characteristicName: BCCharacteristics
+  characteristicName: BCCharacteristic
 ) =>
   createSelector(
-    [
-      (state: {
-        characteristics: Record<BCCharacteristics, CharacteristicInternals>;
-      }) => state.characteristics,
-    ],
+    [(state: RootState) => state.characteristics],
     (characteristics) =>
       characteristics[characteristicName].value +
       characteristics[characteristicName].tempValueModifier
   );
 
 export const createCharacteristicTotalBonuslectorInstance = (
-  characteristicName: BCCharacteristics
+  characteristicName: BCCharacteristic
 ) =>
   createSelector(
     [
-      (state: {
-        characteristics: Record<BCCharacteristics, CharacteristicInternals>;
-      }) => state.characteristics,
+      (state: RootState) => state.characteristics,
       createCharacteristicTotalValueSelectorInstance(characteristicName),
     ],
     (characteristics, totalValue) =>

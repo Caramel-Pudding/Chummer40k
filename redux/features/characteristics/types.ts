@@ -1,4 +1,4 @@
-import { BCCharacteristics } from "./consts";
+import { BCCharacteristic } from "./consts";
 
 export interface CharacteristicInternals {
   value: number;
@@ -13,6 +13,11 @@ export interface CharacteristicFinals {
 }
 
 export interface CharacteristicChangePayload {
-  characteristic: BCCharacteristics;
+  characteristic: BCCharacteristic;
+  value: number;
+}
+
+export interface CharacteristicModifier {
+  characteristic: BCCharacteristic;
   value: number;
 }

@@ -1,10 +1,16 @@
-import { render } from "@testing-library/react";
+import { render } from "../../test-utils";
+
+import { Layout } from "../../components/layout";
 import Home from "..";
 
 describe("The Home Page Component", () => {
   it("should have exactly 1 `main` section", () => {
     // The getByRole will error if there are less or more than 1 element found
-    const { getByRole } = render(<Home />);
+    const { getByRole } = render(
+      <Layout>
+        <Home />
+      </Layout>
+    );
     const main = getByRole("main");
     expect(main).toBeInTheDocument();
   });

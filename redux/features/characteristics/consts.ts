@@ -1,4 +1,4 @@
-export enum BCCharacteristics {
+export enum BCCharacteristic {
   WeaponSkill = "Weapon Skill",
   BallisticSkill = "Ballistic Skill",
   Strength = "Strength",

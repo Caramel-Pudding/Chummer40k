@@ -38,7 +38,8 @@
       "unicorn/no-null": "off",
       "unicorn/no-array-reduce": "off",
       "sonarjs/no-duplicate-string": "off",
-      "jsx-a11y/anchor-is-valid": "off"
+      "jsx-a11y/anchor-is-valid": "off",
+      "jsx-a11y/no-onchange": "off"
     },
     "globals": {
       "React": "writable"

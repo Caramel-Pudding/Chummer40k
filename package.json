@@ -11,16 +11,12 @@
     "eslint-fix": "eslint ./ --ext .js,.jsx,.ts,.tsx --cache --fix",
     "stylelint": "npx stylelint '**/*.css'",
     "stylelint-fix": "npx stylelint '**/*.css' --fix",
-    "test": "jest"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "yarn build && yarn test && yarn audit && lint-staged"
-    }
+    "test": "jest",
+    "prepare": "husky install"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
-      "yarn eslint-fix -- --quiet",
+      "yarn eslint -- --quiet",
       "yarn stylelint-fix"
     ]
   },
