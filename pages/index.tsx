@@ -11,6 +11,10 @@ const Home: React.FC = () => {
       <Head>
         <title>Main Page</title>
         <link href="/favicon.ico" rel="icon" />
+        <meta
+          content="Warhammer 40000 Tabletop RPG Character Generator. Main Page."
+          name="description"
+        />
       </Head>
       <CharacterInfo />
       <hr className={classnames("my-1", "border-gray-800")} />

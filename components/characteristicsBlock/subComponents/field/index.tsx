@@ -54,20 +54,17 @@ export const CharacteristicField: React.FC<CharacteristicFieldProps> = React.mem
           isOpen={isTempChangeModalOpen}
         />
         <div className={classnames("flex", "flex-col")}>
-          <div>
-            <span className={classnames("text-xs")}>
-              {getCharacteristicRepresentation(characteristicName)}
-            </span>
-            <span className={classnames("text-xs")}>
-              {characteristicTotalBonus}
-            </span>
-          </div>
-          <input
-            className={classnames("w-10/12")}
-            type="number"
-            value={characteristicTotalValue || ""}
-            onChange={valueInputHandler}
-          />
+          <label className={classnames("text-xs")}>
+            <span>{getCharacteristicRepresentation(characteristicName)}</span>
+            <span>{characteristicTotalBonus}</span>
+            <input
+              className={classnames("w-10/12")}
+              type="number"
+              value={characteristicTotalValue || ""}
+              onChange={valueInputHandler}
+            />
+          </label>
+
           <button
             className={classnames("text-xs")}
             type="button"
