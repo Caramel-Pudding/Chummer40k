@@ -1,11 +1,9 @@
-import React from "react";
+import React, { FC, memo } from "react";
 
 interface ErrorMessageProps {
   message: string;
 }
 
-export const ErrorMessage: React.FC<ErrorMessageProps> = React.memo(
-  ({ message }) => {
-    return <div>{message}</div>;
-  }
-);
+export const ErrorMessage: FC<ErrorMessageProps> = memo(({ message }) => {
+  return <div>{message}</div>;
+});

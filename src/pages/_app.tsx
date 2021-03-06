@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FC, memo } from "react";
 import { AppProps, NextWebVitalsMetric } from "next/app";
 import { Provider } from "react-redux";
 
@@ -8,7 +8,7 @@ import { store } from "@/redux/store";
 import "@/styles/globals.css";
 import "@/styles/tailwind.css";
 
-const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
+const MyApp: FC<AppProps> = ({ Component, pageProps }) => {
   // eslint-disable-next-line react/jsx-props-no-spreading
   return (
     <Provider store={store}>
@@ -24,4 +24,4 @@ export function reportWebVitals(metric: NextWebVitalsMetric): void {
   console.log(metric);
 }
 
-export default React.memo(MyApp);
+export default memo(MyApp);

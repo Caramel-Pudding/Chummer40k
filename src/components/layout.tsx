@@ -1,8 +1,8 @@
-import React from "react";
+import React, { FC, memo } from "react";
 import Head from "next/head";
 import classnames from "classnames";
 
-export const Layout: React.FC = React.memo(({ children }) => (
+export const Layout: FC = memo(({ children }) => (
   <>
     <Head>
       <title>Welcome to Nextjs</title>

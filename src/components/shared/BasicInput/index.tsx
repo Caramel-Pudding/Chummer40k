@@ -1,25 +1,31 @@
-import React from "react";
+import React, { FC, memo, FormEvent, ReactText } from "react";
 import classnames from "classnames";
 
 interface BasicInputProps {
   labelText: string;
-  value: React.ReactText;
+  value: ReactText;
   handler: (event: string) => void;
-  containerClasses?: string;
+  labelClasses?: string;
   inputClasses?: string;
 }
 
-export const BasicInput: React.FC<BasicInputProps> = React.memo(
-  ({ labelText, value, handler, containerClasses = "", inputClasses = "" }) => {
-    const selectHandler = (event: React.FormEvent<HTMLInputElement>) => {
+export const BasicInput: FC<BasicInputProps> = memo(
+  ({
+    labelText,
+    value,
+    handler,
+    labelClasses: containerClasses = "",
+    inputClasses = "",
+  }) => {
+    const selectHandler = (event: FormEvent<HTMLInputElement>) => {
       handler(event.currentTarget.value);
     };
 
     return (
-      <label className={classnames("text-sm", containerClasses)}>
+      <label className={classnames(containerClasses)}>
         {labelText}
         <input
-          className={classnames("text-sm", inputClasses)}
+          className={classnames(inputClasses)}
           type="text"
           value={value}
           onChange={selectHandler}

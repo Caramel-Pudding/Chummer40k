@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FC, memo, FormEvent } from "react";
 import classnames from "classnames";
 
 interface BasicSelectProps {
@@ -6,22 +6,22 @@ interface BasicSelectProps {
   options: string[];
   chosenOption?: string;
   handler: (event: string) => void;
-  containerClasses?: string;
+  labelClasses?: string;
   selectClasses?: string;
   optionClasses?: string;
 }
 
-export const BasicSelct: React.FC<BasicSelectProps> = React.memo(
+export const BasicSelct: FC<BasicSelectProps> = memo(
   ({
     labelText,
     options,
     chosenOption,
     handler,
-    containerClasses = "",
+    labelClasses: containerClasses = "",
     selectClasses = "",
     optionClasses = "",
   }) => {
-    const selectHandler = (event: React.FormEvent<HTMLSelectElement>) => {
+    const selectHandler = (event: FormEvent<HTMLSelectElement>) => {
       handler(event.currentTarget.value);
     };
 

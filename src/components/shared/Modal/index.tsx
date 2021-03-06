@@ -1,13 +1,16 @@
-import React from "react";
+import React, { FC, memo, Dispatch, SetStateAction } from "react";
+import Image from "next/image";
 import classnames from "classnames";
 
 interface ModalProps {
+  // TODO: This doesn't seem to be a good design choise
+  outerModalHandler: Dispatch<SetStateAction<boolean>>;
   isOpen: boolean;
   classNames?: string;
 }
 
-export const Modal: React.FC<ModalProps> = React.memo(
-  ({ children, isOpen, classNames = "" }) => {
+export const Modal: FC<ModalProps> = memo(
+  ({ children, isOpen, outerModalHandler, classNames = "" }) => {
     if (isOpen) {
       return (
         <div
@@ -27,6 +30,24 @@ export const Modal: React.FC<ModalProps> = React.memo(
             classNames
           )}
         >
+          <div
+            className={classnames(
+              "flex",
+              "flex-row",
+              "justify-end",
+              "mb-2",
+              "cursor-pointer"
+            )}
+          >
+            <Image
+              alt="Close"
+              height={12}
+              src="/icons/close.svg"
+              width={12}
+              onClick={() => outerModalHandler(false)}
+            />
+          </div>
+
           {children}
         </div>
       );

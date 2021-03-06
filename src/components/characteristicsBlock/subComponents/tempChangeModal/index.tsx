@@ -1,4 +1,11 @@
-import React, { ReactText, useState } from "react";
+import React, {
+  ReactText,
+  useState,
+  Dispatch,
+  SetStateAction,
+  FC,
+  memo,
+} from "react";
 import classnames from "classnames";
 
 import { useAppDispatch, useAppSelector } from "@/hooks/redux";
@@ -16,11 +23,11 @@ import { BasicInput } from "@/components/shared/BasicInput";
 interface TempChangeModalProps {
   characteristicName: BCCharacteristic;
   isOpen: boolean;
-  handleModalClose: React.Dispatch<React.SetStateAction<void>>;
+  setIsModalOpen: Dispatch<SetStateAction<boolean>>;
 }
 
-export const TempChangeModal: React.FC<TempChangeModalProps> = React.memo(
-  ({ isOpen, characteristicName, handleModalClose }) => {
+export const TempChangeModal: FC<TempChangeModalProps> = memo(
+  ({ isOpen, characteristicName, setIsModalOpen }) => {
     const dispatch = useAppDispatch();
     const tempValueModifier = useAppSelector(
       (state) => state.characteristics[characteristicName].tempValueModifier
@@ -51,7 +58,7 @@ export const TempChangeModal: React.FC<TempChangeModalProps> = React.memo(
         })
       );
       resetInputs();
-      handleModalClose();
+      setIsModalOpen(false);
     };
 
     const resetHandler = () => {
@@ -62,15 +69,15 @@ export const TempChangeModal: React.FC<TempChangeModalProps> = React.memo(
         setTempBonusModifier({ characteristic: characteristicName, value: 0 })
       );
       resetInputs();
-      handleModalClose();
+      setIsModalOpen(false);
     };
 
     return (
-      <Modal isOpen={isOpen}>
+      <Modal isOpen={isOpen} outerModalHandler={setIsModalOpen}>
         <BasicInput
-          containerClasses={classnames("flex", "justify-around", "text-sm")}
           handler={(value) => setInputValue(value)}
           inputClasses={classnames("w-16", "ml-2")}
+          labelClasses={classnames("flex", "justify-around", "text-sm")}
           labelText="Value:"
           value={inputValue}
         />
@@ -79,9 +86,9 @@ export const TempChangeModal: React.FC<TempChangeModalProps> = React.memo(
         </span>
         <br />
         <BasicInput
-          containerClasses={classnames("flex", "justify-around", "text-sm")}
           handler={(value) => setInputBonus(value)}
           inputClasses={classnames("w-16", "ml-2")}
+          labelClasses={classnames("flex", "justify-around", "text-sm")}
           labelText="Bonus:"
           value={inputBonus}
         />

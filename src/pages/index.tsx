@@ -1,11 +1,12 @@
-import React from "react";
+import React, { FC, memo } from "react";
 import Head from "next/head";
 import classnames from "classnames";
 
 import { CharacterInfo } from "@/components/characterInfo";
 import { CharacteristicsBlock } from "@/components/characteristicsBlock";
+import { HitLocations } from "@/components/hitLocations";
 
-const Home: React.FC = () => {
+const Home: FC = () => {
   return (
     <>
       <Head>
@@ -20,8 +21,9 @@ const Home: React.FC = () => {
       <hr className={classnames("my-1", "border-gray-800")} />
       <CharacteristicsBlock />
       <hr className={classnames("my-1", "border-gray-800")} />
+      <HitLocations />
     </>
   );
 };
 
-export default React.memo(Home);
+export default memo(Home);

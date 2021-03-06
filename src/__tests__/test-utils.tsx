@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactElement, FC } from "react";
 import {
   render as rtlRender,
   RenderOptions,
@@ -42,14 +42,14 @@ interface RenderProps {
 const reducer = combineReducers({ descriptors, characteristics, narrative });
 
 const render = (
-  ui: React.ReactElement,
+  ui: ReactElement,
   {
     initialState = initialStateMock,
     store = createStore(reducer, initialState),
     ...renderOptions
   }: RenderProps
 ): RenderResult<Queries, HTMLElement> => {
-  const Wrapper: React.FC = ({ children }) => {
+  const Wrapper: FC = ({ children }) => {
     return <Provider store={store}>{children}</Provider>;
   };
   return rtlRender(ui, { wrapper: Wrapper, ...renderOptions });

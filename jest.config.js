@@ -26,5 +26,6 @@ module.exports = {
     '^@/tests/(.*)$': resolve(__dirname, './src/__tests__/$1'),
     '^@/types/(.*)$': resolve(__dirname, './src/types/$1'),
     '^@/utilities/(.*)$': resolve(__dirname, './src/utilities/$1'),
+    '\\.(css|scss)$': 'identity-obj-proxy'
   },
 };

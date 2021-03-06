@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, FC, memo, FormEvent } from "react";
 import classnames from "classnames";
 
 import {
@@ -12,11 +12,11 @@ import { BCCharacteristic } from "@/redux/features/characteristics/consts";
 import { TempChangeModal } from "../tempChangeModal";
 import { getCharacteristicRepresentation } from "../../helpers";
 
-interface CharacteristicFieldProps {
+interface CharacteristicBoxProps {
   characteristicName: BCCharacteristic;
 }
 
-export const CharacteristicField: React.FC<CharacteristicFieldProps> = React.memo(
+export const CharacteristicBox: FC<CharacteristicBoxProps> = memo(
   ({ characteristicName }) => {
     const dispatch = useAppDispatch();
 
@@ -31,9 +31,7 @@ export const CharacteristicField: React.FC<CharacteristicFieldProps> = React.mem
       false
     );
 
-    const valueInputHandler = (
-      event: React.FormEvent<HTMLInputElement>
-    ): void => {
+    const valueInputHandler = (event: FormEvent<HTMLInputElement>): void => {
       dispatch(
         setValue({
           characteristic: characteristicName,
@@ -50,8 +48,8 @@ export const CharacteristicField: React.FC<CharacteristicFieldProps> = React.mem
       <>
         <TempChangeModal
           characteristicName={characteristicName}
-          handleModalClose={() => setIsTempChangeModalOpen(false)}
           isOpen={isTempChangeModalOpen}
+          setIsModalOpen={setIsTempChangeModalOpen}
         />
         <div className={classnames("flex", "flex-col")}>
           <label className={classnames("text-xs")}>

@@ -1,5 +1,5 @@
-import React from "react";
+import React, { FC, memo } from "react";
 
-export const Loader: React.FC = React.memo(() => {
+export const Loader: FC = memo(() => {
   return <div>Loading...</div>;
 });

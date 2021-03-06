@@ -1,12 +1,14 @@
-import React from "react";
+import React, { FC, memo } from "react";
 import classnames from "classnames";
 
 import { Descriptos } from "./descriptors";
 import { MainIdentifiers } from "./mainIdentifiers";
 
-export const CharacterInfo: React.FC = React.memo(() => {
+export const CharacterInfo: FC = memo(() => {
   return (
-    <section>
+    <section
+      className={classnames("grid", "grid-cols-2", "gap-x-4", "grid-rows-auto")}
+    >
       <MainIdentifiers />
       <Descriptos />
     </section>
