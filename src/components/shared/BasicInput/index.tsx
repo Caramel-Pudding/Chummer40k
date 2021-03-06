@@ -4,13 +4,17 @@ import classnames from "classnames";
 interface BasicInputProps {
   labelText: string;
   value: React.ReactText;
-  handler: (event: React.FormEvent<HTMLInputElement>) => void;
+  handler: (event: string) => void;
   containerClasses?: string;
   inputClasses?: string;
 }
 
 export const BasicInput: React.FC<BasicInputProps> = React.memo(
   ({ labelText, value, handler, containerClasses = "", inputClasses = "" }) => {
+    const selectHandler = (event: React.FormEvent<HTMLInputElement>) => {
+      handler(event.currentTarget.value);
+    };
+
     return (
       <label className={classnames("text-sm", containerClasses)}>
         {labelText}
@@ -18,7 +22,7 @@ export const BasicInput: React.FC<BasicInputProps> = React.memo(
           className={classnames("text-sm", inputClasses)}
           type="text"
           value={value}
-          onChange={handler}
+          onChange={selectHandler}
         />
       </label>
     );

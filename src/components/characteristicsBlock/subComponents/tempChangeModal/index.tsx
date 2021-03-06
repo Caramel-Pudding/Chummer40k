@@ -10,7 +10,6 @@ import {
 } from "@/redux/features/characteristics/slice";
 
 import { BCCharacteristic } from "@/redux/features/characteristics/consts";
-
 import { Modal } from "@/components/shared/Modal";
 import { BasicInput } from "@/components/shared/BasicInput";
 
@@ -30,37 +29,25 @@ export const TempChangeModal: React.FC<TempChangeModalProps> = React.memo(
       (state) => state.characteristics[characteristicName].tempBonusModifier
     );
 
-    const [value, setValue] = useState<ReactText>(0);
-    const [bonus, setBonus] = useState<ReactText>(0);
-
-    const valueInputHandler = (
-      event: React.FormEvent<HTMLInputElement>
-    ): void => {
-      setValue(event.currentTarget.value);
-    };
-
-    const bonusInputHandler = (
-      event: React.FormEvent<HTMLInputElement>
-    ): void => {
-      setBonus(event.currentTarget.value);
-    };
+    const [inputValue, setInputValue] = useState<ReactText>(0);
+    const [inputBonus, setInputBonus] = useState<ReactText>(0);
 
     const resetInputs = () => {
-      setValue(0);
-      setBonus(0);
+      setInputValue(0);
+      setInputBonus(0);
     };
 
     const applyHandler = () => {
       dispatch(
         changeTempValueModifierByAmount({
           characteristic: characteristicName,
-          value: Number(value),
+          value: Number(inputValue),
         })
       );
       dispatch(
         changeTempBonusModifierByAmount({
           characteristic: characteristicName,
-          value: Number(bonus),
+          value: Number(inputBonus),
         })
       );
       resetInputs();
@@ -82,10 +69,10 @@ export const TempChangeModal: React.FC<TempChangeModalProps> = React.memo(
       <Modal isOpen={isOpen}>
         <BasicInput
           containerClasses={classnames("flex", "justify-around", "text-sm")}
-          handler={valueInputHandler}
+          handler={(value) => setInputValue(value)}
           inputClasses={classnames("w-16", "ml-2")}
           labelText="Value:"
-          value={value}
+          value={inputValue}
         />
         <span className={classnames("text-xs")}>
           Current modifier: {tempValueModifier}
@@ -93,10 +80,10 @@ export const TempChangeModal: React.FC<TempChangeModalProps> = React.memo(
         <br />
         <BasicInput
           containerClasses={classnames("flex", "justify-around", "text-sm")}
-          handler={bonusInputHandler}
+          handler={(value) => setInputBonus(value)}
           inputClasses={classnames("w-16", "ml-2")}
           labelText="Bonus:"
-          value={bonus}
+          value={inputBonus}
         />
         <span className={classnames("text-xs")}>
           Current modifier: {tempBonusModifier}

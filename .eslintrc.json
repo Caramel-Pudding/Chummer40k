@@ -33,13 +33,13 @@
       "jsx-a11y/label-has-associated-control": [ "error", {
         "assert": "nesting"
       }],
+      "jsx-a11y/anchor-is-valid": "off",
+      "jsx-a11y/no-onchange": "off",
       "jsx-props-no-spreading": "off",
       "unicorn/prevent-abbreviations": "off",
       "unicorn/no-null": "off",
       "unicorn/no-array-reduce": "off",
-      "sonarjs/no-duplicate-string": "off",
-      "jsx-a11y/anchor-is-valid": "off",
-      "jsx-a11y/no-onchange": "off"
+      "sonarjs/no-duplicate-string": "off"
     },
     "globals": {
       "React": "writable"

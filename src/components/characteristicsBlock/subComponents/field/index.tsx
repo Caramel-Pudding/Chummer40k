@@ -7,9 +7,9 @@ import {
   setValue,
 } from "@/redux/features/characteristics/slice";
 import { useAppDispatch, useAppSelector } from "@/hooks/redux";
+import { BCCharacteristic } from "@/redux/features/characteristics/consts";
 
 import { TempChangeModal } from "../tempChangeModal";
-import { BCCharacteristic } from "../../../../redux/features/characteristics/consts";
 import { getCharacteristicRepresentation } from "../../helpers";
 
 interface CharacteristicFieldProps {

@@ -1,9 +1,9 @@
 import React from "react";
 import classnames from "classnames";
 
-import { useAppSelector } from "../../hooks/redux";
+import { BCCharacteristic } from "@/redux/features/characteristics/consts";
+import { useAppSelector } from "@/hooks/redux";
 import { CharacteristicField } from "./subComponents/field";
-import { BCCharacteristic } from "../../redux/features/characteristics/consts";
 
 export const CharacteristicsBlock: React.FC = React.memo(() => {
   const characteristics = useAppSelector((state) => state.characteristics);
