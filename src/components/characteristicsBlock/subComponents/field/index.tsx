@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import classnames from "classnames";
 
-import { useAppDispatch, useAppSelector } from "../../../../hooks/redux";
 import {
   createCharacteristicTotalBonuslectorInstance,
   createCharacteristicTotalValueSelectorInstance,
   setValue,
-} from "../../../../redux/features/characteristics/slice";
+} from "@/redux/features/characteristics/slice";
+import { useAppDispatch, useAppSelector } from "@/hooks/redux";
 
 import { TempChangeModal } from "../tempChangeModal";
 import { BCCharacteristic } from "../../../../redux/features/characteristics/consts";

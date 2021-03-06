@@ -1,4 +1,4 @@
-import { abbreviate } from "../../utilities/strings";
+import { abbreviate } from "@/utilities/strings";
 
 export const getCharacteristicRepresentation = (
   characteristic: string

@@ -20,7 +20,18 @@
     "typeRoots": [
       "types",
       "node_modules/@types"
-    ]
+    ],
+    "baseUrl": "./src",
+    "paths": {
+      "@/components/*": ["components/*"],
+      "@/hooks/*": ["hooks/*"],
+      "@/pages/*": ["pages/*"],
+      "@/redux/*": ["redux/*"],
+      "@/styles/*": ["styles/*"],
+      "@/tests/*": ["__tests__/*"],
+      "@/types/*": ["types/*"],
+      "@/utilities/*": ["utilities/*"],
+    }
   },
   "include": [
     "next-env.d.ts",

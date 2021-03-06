@@ -1,14 +1,15 @@
 import { createSlice, PayloadAction, createSelector } from "@reduxjs/toolkit";
 
 // eslint-disable-next-line import/no-cycle
-import { RootState } from "../../store";
+import { RootState } from "@/redux/store";
+import { stringEnumToArrayOfNames } from "@/utilities/arrays";
+
 import { CharacteristicInternals, CharacteristicChangePayload } from "./types";
 import { BCCharacteristic } from "./consts";
 import { calculateCharacteristicBonus } from "./helpers";
-import { stringEnumToArrayOfNames } from "../../../utilities/arrays";
 
 // Define the initial state using that type
-const getInitialState = (
+export const getInitialState = (
   characteristicsSet: typeof BCCharacteristic
 ): Record<BCCharacteristic, CharacteristicInternals> => {
   return stringEnumToArrayOfNames(characteristicsSet).reduce(
@@ -121,4 +122,4 @@ export const {
   changeTempBonusModifierByAmount,
 } = characteristicsSlice.actions;
 
-export default characteristicsSlice.reducer;
+export const { reducer } = characteristicsSlice;

@@ -2,8 +2,8 @@ import React from "react";
 import Head from "next/head";
 import classnames from "classnames";
 
-import { CharacterInfo } from "../components/characterInfo";
-import { CharacteristicsBlock } from "../components/characteristicsBlock";
+import { CharacterInfo } from "@/components/characterInfo";
+import { CharacteristicsBlock } from "@/components/characteristicsBlock";
 
 const Home: React.FC = () => {
   return (

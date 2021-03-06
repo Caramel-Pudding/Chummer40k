@@ -1,4 +1,5 @@
-import { render } from "../../test-utils";
+import { render } from "@/tests/test-utils";
+import { initialStateMock } from "@/tests/initial-state-mock";
 
 import { Layout } from "../../components/layout";
 import Home from "..";
@@ -9,7 +10,8 @@ describe("The Home Page Component", () => {
     const { getByRole } = render(
       <Layout>
         <Home />
-      </Layout>
+      </Layout>,
+      { initialState: initialStateMock }
     );
     const main = getByRole("main");
     expect(main).toBeInTheDocument();

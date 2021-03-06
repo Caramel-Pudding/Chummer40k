@@ -1,18 +1,18 @@
 import React, { ReactText, useState } from "react";
 import classnames from "classnames";
 
-import { useAppDispatch, useAppSelector } from "../../../../hooks/redux";
+import { useAppDispatch, useAppSelector } from "@/hooks/redux";
 import {
   setTempValueModifier,
   changeTempValueModifierByAmount,
   setTempBonusModifier,
   changeTempBonusModifierByAmount,
-} from "../../../../redux/features/characteristics/slice";
+} from "@/redux/features/characteristics/slice";
 
-import { BCCharacteristic } from "../../../../redux/features/characteristics/consts";
+import { BCCharacteristic } from "@/redux/features/characteristics/consts";
 
-import { Modal } from "../../../shared/Modal";
-import { BasicInput } from "../../../shared/BasicInput";
+import { Modal } from "@/components/shared/Modal";
+import { BasicInput } from "@/components/shared/BasicInput";
 
 interface TempChangeModalProps {
   characteristicName: BCCharacteristic;

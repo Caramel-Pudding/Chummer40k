@@ -1,9 +1,6 @@
 import React from "react";
 import classnames from "classnames";
 
-import { useAppDispatch, useAppSelector } from "../../hooks/redux";
-import { BasicInput } from "../shared/BasicInput";
-import { BasicSelct } from "../shared/BasicSelct";
 import {
   Race,
   Pride,
@@ -12,15 +9,17 @@ import {
   CSMArchetype,
   HumanArchetype,
   Archetype,
-} from "../../redux/features/descriptors/consts";
+} from "@/redux/features/descriptors/consts";
 import {
   setRace,
   setArchetype,
   setPride,
   setDisgrace,
   setMotivation,
-} from "../../redux/features/descriptors/slice";
-import { stringEnumToArrayOfNames } from "../../utilities/arrays";
+} from "@/redux/features/descriptors/slice";
+import { useAppDispatch, useAppSelector } from "@/hooks/redux";
+import { BasicSelct } from "@/components/shared/BasicSelct";
+import { stringEnumToArrayOfNames } from "@/utilities/arrays";
 
 export const CharacterInfo: React.FC = React.memo(() => {
   const dispatch = useAppDispatch();

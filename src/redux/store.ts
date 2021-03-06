@@ -1,8 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
 
 /* eslint-disable import/no-cycle */
-import characteristics from "./features/characteristics/slice";
-import descriptors from "./features/descriptors/slice";
+import { reducer as characteristics } from "@/redux/features/characteristics/slice";
+import { reducer as descriptors } from "@/redux/features/descriptors/slice";
 /* eslint-enable import/no-cycle */
 
 export const store = configureStore({

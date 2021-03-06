@@ -1,12 +1,12 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 // eslint-disable-next-line import/no-cycle
-import { RootState } from "../../store";
+import { RootState } from "@/redux/store";
 import { DescriptorsState, DescriptorChangePayload } from "./types";
 import { Race, Pride, Disgrace, Motivation, Archetype } from "./consts";
 
 // Define the initial state using that type
-const initialState: DescriptorsState = {
+export const initialState: DescriptorsState = {
   race: {},
   archetype: {},
   pride: {},
@@ -59,4 +59,4 @@ export const {
   setMotivation,
 } = descriptorsSlice.actions;
 
-export default descriptorsSlice.reducer;
+export const { reducer } = descriptorsSlice;

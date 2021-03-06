@@ -1,4 +1,4 @@
-import { CharacteristicModifier } from "../characteristics/types";
+import { CharacteristicModifier } from "@/redux/features/characteristics/types";
 
 import type {
   Race,
