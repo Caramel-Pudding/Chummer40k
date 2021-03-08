@@ -2,8 +2,19 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 // eslint-disable-next-line import/no-cycle
 import { RootState } from "@/redux/store";
-import { DescriptorsState, DescriptorChangePayload } from "./types";
-import { Race, Pride, Disgrace, Motivation, Archetype } from "./consts";
+import {
+  DescriptorsState,
+  DescriptorChangePayload,
+  AlignmentChangePayload,
+} from "./types";
+import {
+  Race,
+  Pride,
+  Disgrace,
+  Motivation,
+  Archetype,
+  Alignment,
+} from "./consts";
 
 // Define the initial state using that type
 export const initialState: DescriptorsState = {
@@ -12,6 +23,7 @@ export const initialState: DescriptorsState = {
   pride: {},
   disgrade: {},
   motivation: {},
+  alignment: Alignment.Unaligned,
 };
 
 export const descriptorsSlice = createSlice({
@@ -47,6 +59,9 @@ export const descriptorsSlice = createSlice({
     ) => {
       state.motivation = action.payload.value;
     },
+    setAlignment: (state, action: PayloadAction<AlignmentChangePayload>) => {
+      state.alignment = action.payload.value;
+    },
   },
   /* eslint-enable no-param-reassign */
 });
@@ -57,6 +72,7 @@ export const {
   setPride,
   setDisgrace,
   setMotivation,
+  setAlignment,
 } = descriptorsSlice.actions;
 
 export const { reducer } = descriptorsSlice;

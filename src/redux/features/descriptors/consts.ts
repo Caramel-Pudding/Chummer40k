@@ -76,4 +76,19 @@ export enum Motivation {
   Violence = "Violence",
 }
 
-export type DescriptorsUnion = Race | Archetype | Pride | Disgrace | Motivation;
+export enum Alignment {
+  Unaligned = "Unaligned",
+  Slaanesh = "Slaanesh",
+  Nurgle = "Nurgle",
+  Khorne = "Khorne",
+  Tzeentch = "Tzeentch",
+  Outcast = "???",
+}
+
+export type DescriptorsUnion =
+  | Race
+  | Archetype
+  | Pride
+  | Disgrace
+  | Motivation
+  | Alignment;

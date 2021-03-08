@@ -7,6 +7,7 @@ import type {
   Disgrace,
   Motivation,
   DescriptorsUnion,
+  Alignment,
 } from "./consts";
 
 export interface Descriptor<T extends DescriptorsUnion> {
@@ -22,8 +23,13 @@ export interface DescriptorsState {
   pride: Descriptor<Pride>;
   disgrade: Descriptor<Disgrace>;
   motivation: Descriptor<Motivation>;
+  alignment: Alignment;
 }
 
 export interface DescriptorChangePayload<T extends DescriptorsUnion> {
   value: Descriptor<T>;
+}
+
+export interface AlignmentChangePayload {
+  value: Alignment;
 }

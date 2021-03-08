@@ -1,4 +1,6 @@
 import React, { useState, FC, memo, FormEvent } from "react";
+import { MdModeEdit } from "react-icons/md";
+
 import classnames from "classnames";
 
 import {
@@ -62,14 +64,10 @@ export const CharacteristicBox: FC<CharacteristicBoxProps> = memo(
               onChange={valueInputHandler}
             />
           </label>
-
-          <button
-            className={classnames("text-xs")}
-            type="button"
+          <MdModeEdit
+            className="cursor-pointer"
             onClick={tempChangeClickHandler}
-          >
-            +-
-          </button>
+          />
         </div>
       </>
     );

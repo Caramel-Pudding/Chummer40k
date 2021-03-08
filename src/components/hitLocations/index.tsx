@@ -5,7 +5,8 @@ import classnames from "classnames";
 import { useAppDispatch, useAppSelector } from "@/hooks/redux";
 import { Race } from "@/redux/features/descriptors/consts";
 
-import { HitLocation, xPositions, yPositions } from "./consts";
+import { HitLocation } from "@/redux/features/vitals/consts";
+import { xPositions, yPositions } from "./consts";
 import { HitBox } from "./subComponents/hitBox";
 import styles from "./hitLocations.module.css";
 
@@ -26,27 +27,33 @@ export const HitLocations: FC = memo(() => {
       />
       <HitBox
         location={HitLocation.Head}
-        position={classnames(xPositions.center, yPositions.top)}
+        xPosition={xPositions.center}
+        yLocation={yPositions.top}
       />
       <HitBox
         location={HitLocation.LeftArm}
-        position={classnames(xPositions.left, yPositions.center)}
+        xPosition={xPositions.left}
+        yLocation={yPositions.center}
       />
       <HitBox
         location={HitLocation.Torso}
-        position={classnames(xPositions.center, yPositions.center)}
+        xPosition={xPositions.center}
+        yLocation={yPositions.center}
       />
       <HitBox
         location={HitLocation.RightArm}
-        position={classnames(xPositions.right, yPositions.center)}
+        xPosition={xPositions.right}
+        yLocation={yPositions.center}
       />
       <HitBox
         location={HitLocation.LeftLeg}
-        position={classnames(xPositions.left, yPositions.bottom)}
+        xPosition={xPositions.left}
+        yLocation={yPositions.bottom}
       />
       <HitBox
         location={HitLocation.RightLeg}
-        position={classnames(xPositions.right, yPositions.bottom)}
+        xPosition={xPositions.right}
+        yLocation={yPositions.bottom}
       />
     </section>
   );

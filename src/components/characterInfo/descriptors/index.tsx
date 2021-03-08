@@ -9,6 +9,7 @@ import {
   CSMArchetype,
   HumanArchetype,
   Archetype,
+  Alignment,
 } from "@/redux/features/descriptors/consts";
 import {
   setRace,
@@ -16,6 +17,7 @@ import {
   setPride,
   setDisgrace,
   setMotivation,
+  setAlignment,
 } from "@/redux/features/descriptors/slice";
 import { useAppDispatch, useAppSelector } from "@/hooks/redux";
 import { BasicSelct } from "@/components/shared/BasicSelct";
@@ -28,6 +30,7 @@ export const Descriptos: FC = memo(() => {
   const pride = useAppSelector((state) => state.descriptors.pride);
   const disgrace = useAppSelector((state) => state.descriptors.disgrade);
   const motivation = useAppSelector((state) => state.descriptors.motivation);
+  const alignment = useAppSelector((state) => state.descriptors.alignment);
 
   const descriptorSelectClasses = classnames("w-40");
   const descriptorLabelClasses = classnames("text-xs");
@@ -86,6 +89,16 @@ export const Descriptos: FC = memo(() => {
         labelClasses={descriptorLabelClasses}
         labelText="Motivation"
         options={stringEnumToArrayOfNames(Motivation)}
+        selectClasses={descriptorSelectClasses}
+      />
+      <BasicSelct
+        chosenOption={alignment}
+        handler={(value) =>
+          dispatch(setAlignment({ value: value as Alignment }))
+        }
+        labelClasses={descriptorLabelClasses}
+        labelText="Alignment"
+        options={stringEnumToArrayOfNames(Alignment)}
         selectClasses={descriptorSelectClasses}
       />
     </>

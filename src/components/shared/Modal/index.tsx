@@ -1,5 +1,6 @@
 import React, { FC, memo, Dispatch, SetStateAction } from "react";
 import Image from "next/image";
+import { MdClose } from "react-icons/md";
 import classnames from "classnames";
 
 interface ModalProps {
@@ -39,13 +40,7 @@ export const Modal: FC<ModalProps> = memo(
               "cursor-pointer"
             )}
           >
-            <Image
-              alt="Close"
-              height={12}
-              src="/icons/close.svg"
-              width={12}
-              onClick={() => outerModalHandler(false)}
-            />
+            <MdClose onClick={() => outerModalHandler(false)} />
           </div>
 
           {children}
