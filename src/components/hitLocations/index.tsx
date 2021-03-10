@@ -8,7 +8,7 @@ import { Race } from "@/redux/features/descriptors/consts";
 import { HitLocation } from "@/redux/features/vitals/consts";
 import { xPositions, yPositions } from "./consts";
 import { HitBox } from "./subComponents/hitBox";
-import styles from "./hitLocations.module.css";
+import styles from "./styles.module.css";
 
 export const HitLocations: FC = memo(() => {
   const race = useAppSelector((state) => state.descriptors.race.name);

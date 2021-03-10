@@ -1,0 +1,7 @@
+.input {
+  @apply w-40;
+}
+
+.label {
+  @apply text-xs;
+}

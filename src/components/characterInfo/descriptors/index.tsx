@@ -22,6 +22,7 @@ import {
 import { useAppDispatch, useAppSelector } from "@/hooks/redux";
 import { BasicSelct } from "@/components/shared/BasicSelct";
 import { stringEnumToArrayOfNames } from "@/utilities/arrays";
+import styles from "./styles.module.css";
 
 export const Descriptos: FC = memo(() => {
   const dispatch = useAppDispatch();
@@ -32,9 +33,6 @@ export const Descriptos: FC = memo(() => {
   const motivation = useAppSelector((state) => state.descriptors.motivation);
   const alignment = useAppSelector((state) => state.descriptors.alignment);
 
-  const descriptorSelectClasses = classnames("w-40");
-  const descriptorLabelClasses = classnames("text-xs");
-
   return (
     <>
       <BasicSelct
@@ -42,64 +40,64 @@ export const Descriptos: FC = memo(() => {
         handler={(value) =>
           dispatch(setRace({ value: { name: value as Race } }))
         }
-        labelClasses={descriptorLabelClasses}
+        labelClasses={classnames(styles.label)}
         labelText="Race"
         options={stringEnumToArrayOfNames(Race)}
-        selectClasses={descriptorSelectClasses}
+        selectClasses={classnames(styles.select)}
       />
       <BasicSelct
         chosenOption={archetype.name}
         handler={(value) =>
           dispatch(setArchetype({ value: { name: value as Archetype } }))
         }
-        labelClasses={descriptorLabelClasses}
+        labelClasses={classnames(styles.label)}
         labelText="Archetype"
         options={
           race.name === Race.ChaosSpaceMarine
             ? stringEnumToArrayOfNames(CSMArchetype)
             : stringEnumToArrayOfNames(HumanArchetype)
         }
-        selectClasses={descriptorSelectClasses}
+        selectClasses={classnames(styles.select)}
       />
       <BasicSelct
         chosenOption={pride.name}
         handler={(value) =>
           dispatch(setPride({ value: { name: value as Pride } }))
         }
-        labelClasses={descriptorLabelClasses}
+        labelClasses={classnames(styles.label)}
         labelText="Pride"
         options={stringEnumToArrayOfNames(Pride)}
-        selectClasses={descriptorSelectClasses}
+        selectClasses={classnames(styles.select)}
       />
       <BasicSelct
         chosenOption={disgrace.name}
         handler={(value) =>
           dispatch(setDisgrace({ value: { name: value as Disgrace } }))
         }
-        labelClasses={descriptorLabelClasses}
+        labelClasses={classnames(styles.label)}
         labelText="Disgrace"
         options={stringEnumToArrayOfNames(Disgrace)}
-        selectClasses={descriptorSelectClasses}
+        selectClasses={classnames(styles.select)}
       />
       <BasicSelct
         chosenOption={motivation.name}
         handler={(value) =>
           dispatch(setMotivation({ value: { name: value as Motivation } }))
         }
-        labelClasses={descriptorLabelClasses}
+        labelClasses={classnames(styles.label)}
         labelText="Motivation"
         options={stringEnumToArrayOfNames(Motivation)}
-        selectClasses={descriptorSelectClasses}
+        selectClasses={classnames(styles.select)}
       />
       <BasicSelct
         chosenOption={alignment}
         handler={(value) =>
           dispatch(setAlignment({ value: value as Alignment }))
         }
-        labelClasses={descriptorLabelClasses}
+        labelClasses={classnames(styles.label)}
         labelText="Alignment"
         options={stringEnumToArrayOfNames(Alignment)}
-        selectClasses={descriptorSelectClasses}
+        selectClasses={classnames(styles.select)}
       />
     </>
   );
