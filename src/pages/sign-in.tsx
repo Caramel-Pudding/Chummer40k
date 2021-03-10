@@ -1,9 +1,7 @@
 import React, { FC, memo } from "react";
 import Head from "next/head";
-import classnames from "classnames";
-import { Header } from "@/components/header";
 
-export const Layout: FC = memo(({ children }) => (
+const SignIn: FC = () => (
   <>
     <Head>
       <title>Welcome to Nextjs</title>
@@ -14,9 +12,8 @@ export const Layout: FC = memo(({ children }) => (
         name="description"
       />
     </Head>
-    <Header />
-    <main className={classnames("h-screen", "w-screen", "p-4", "bg-gray-300")}>
-      {children}
-    </main>
+    <div>LogIn</div>
   </>
-));
+);
+
+export default memo(SignIn);

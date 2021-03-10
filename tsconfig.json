@@ -26,6 +26,7 @@
       "@/components/*": ["components/*"],
       "@/hooks/*": ["hooks/*"],
       "@/pages/*": ["pages/*"],
+      "@/prisma/*": ["prisma/*"],
       "@/redux/*": ["redux/*"],
       "@/styles/*": ["styles/*"],
       "@/tests/*": ["__tests__/*"],

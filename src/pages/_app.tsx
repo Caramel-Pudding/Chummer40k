@@ -20,8 +20,10 @@ const MyApp: FC<AppProps> = ({ Component, pageProps }) => {
 };
 
 export function reportWebVitals(metric: NextWebVitalsMetric): void {
-  // eslint-disable-next-line no-console
-  console.log(metric);
+  if (process.env.NODE_ENV !== "production") {
+    // eslint-disable-next-line no-console
+    console.log(metric);
+  }
 }
 
 export default memo(MyApp);
