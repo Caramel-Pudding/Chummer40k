@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "NODE_OPTIONS='--inspect' next dev",
+    "dev-vitals": "NEXT_PUBLIC_VITALS=true NODE_OPTIONS='--inspect' next dev",
     "build": "next build",
     "start": "next start",
     "analyze": "ANALYZE=true next build",
@@ -32,6 +33,7 @@
     "@prisma/client": "^2.18.0",
     "@reduxjs/toolkit": "^1.5.0",
     "@types/react-redux": "^7.1.16",
+    "@welldone-software/why-did-you-render": "^6.1.0",
     "autoprefixer": "^10.2.4",
     "classnames": "^2.2.6",
     "next": "10.0.7",

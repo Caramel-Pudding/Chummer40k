@@ -1,7 +1,7 @@
 import React, { FC, memo } from "react";
 import Link from "next/link";
 import classnames from "classnames";
-import { signOut, useSession } from "next-auth/client";
+import { useSession, signIn, signOut } from "next-auth/client";
 
 export const Header: FC = memo(() => {
   const [session, isLoading] = useSession();
@@ -13,20 +13,15 @@ export const Header: FC = memo(() => {
 
     if (!session) {
       return (
-        <div>
-          <Link href="/api/auth/signin">
-            <a>Sign in</a>
-          </Link>
-          <Link href="/api/auth/signin">
-            <a>Log in</a>
-          </Link>
-        </div>
+        <button type="button" onClick={() => signIn()}>
+          Sign In
+        </button>
       );
     }
 
     return (
       <div>
-        <button type="button">{session.user.name} Characters</button>
+        <button type="button">Characters</button>
         <button type="button" onClick={() => signOut()}>
           <a>Log out</a>
         </button>
@@ -40,7 +35,9 @@ export const Header: FC = memo(() => {
         "flex",
         "flex-row",
         "justify-between",
-        "bg-gray-600"
+        "p-2",
+        "bg-gray-600",
+        "text-sm"
       )}
     >
       <Link href="/">

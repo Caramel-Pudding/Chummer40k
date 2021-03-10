@@ -29,9 +29,10 @@
       "@/prisma/*": ["prisma/*"],
       "@/redux/*": ["redux/*"],
       "@/styles/*": ["styles/*"],
-      "@/tests/*": ["__tests__/*"],
       "@/types/*": ["types/*"],
       "@/utilities/*": ["utilities/*"],
+      "@/tests/*": ["__tests__/*"],
+      "@/debug/*": ["__debug__/*"],
     }
   },
   "include": [
