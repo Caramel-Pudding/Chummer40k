@@ -11,25 +11,25 @@ import type {
 } from "./consts";
 
 export interface Descriptor<T extends DescriptorsUnion> {
-  name?: T;
-  characteristicModfiier?: CharacteristicModifier;
-  woundsModifier?: number;
-  specialModifier?: string;
+  readonly name?: T;
+  readonly characteristicModfiier?: CharacteristicModifier;
+  readonly woundsModifier?: number;
+  readonly specialModifier?: string;
 }
 
 export interface DescriptorsState {
-  race: Descriptor<Race>;
-  archetype: Descriptor<Archetype>;
-  pride: Descriptor<Pride>;
-  disgrade: Descriptor<Disgrace>;
-  motivation: Descriptor<Motivation>;
-  alignment: Alignment;
+  readonly race: Descriptor<Race>;
+  readonly archetype: Descriptor<Archetype>;
+  readonly pride: Descriptor<Pride>;
+  readonly disgrade: Descriptor<Disgrace>;
+  readonly motivation: Descriptor<Motivation>;
+  readonly alignment: Alignment;
 }
 
 export interface DescriptorChangePayload<T extends DescriptorsUnion> {
-  value: Descriptor<T>;
+  readonly value: Descriptor<T>;
 }
 
 export interface AlignmentChangePayload {
-  value: Alignment;
+  readonly value: Alignment;
 }

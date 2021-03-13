@@ -1,23 +1,23 @@
 import { BCCharacteristic } from "./consts";
 
 export interface CharacteristicInternals {
-  value: number;
-  tempValueModifier: number;
-  persistentBonusModifier: number;
-  tempBonusModifier: number;
+  readonly value: number;
+  readonly tempValueModifier: number;
+  readonly persistentBonusModifier: number;
+  readonly tempBonusModifier: number;
 }
 
 export interface CharacteristicFinals {
-  value: number;
-  bonus: number;
+  readonly value: number;
+  readonly bonus: number;
 }
 
 export interface CharacteristicChangePayload {
-  characteristic: BCCharacteristic;
-  value: number;
+  readonly characteristic: BCCharacteristic;
+  readonly value: number;
 }
 
 export interface CharacteristicModifier {
-  characteristic: BCCharacteristic;
-  value: number;
+  readonly characteristic: BCCharacteristic;
+  readonly value: number;
 }

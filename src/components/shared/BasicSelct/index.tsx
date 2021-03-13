@@ -2,13 +2,13 @@ import React, { FC, memo, FormEvent } from "react";
 import classnames from "classnames";
 
 interface BasicSelectProps {
-  labelText: string;
-  options: string[];
-  chosenOption?: string;
-  handler: (event: string) => void;
-  labelClasses?: string;
-  selectClasses?: string;
-  optionClasses?: string;
+  readonly labelText: string;
+  readonly options: string[];
+  readonly chosenOption?: string;
+  readonly handler: (event: string) => void;
+  readonly labelClasses?: string;
+  readonly selectClasses?: string;
+  readonly optionClasses?: string;
 }
 
 export const BasicSelct: FC<BasicSelectProps> = memo(

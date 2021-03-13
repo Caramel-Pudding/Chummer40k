@@ -1,7 +1,7 @@
 import React, { FC, memo } from "react";
 
 interface ErrorMessageProps {
-  message: string;
+  readonly message: string;
 }
 
 export const ErrorMessage: FC<ErrorMessageProps> = memo(({ message }) => {

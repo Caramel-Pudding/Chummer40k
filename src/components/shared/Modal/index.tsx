@@ -1,13 +1,12 @@
 import React, { FC, memo, Dispatch, SetStateAction } from "react";
-import Image from "next/image";
 import { MdClose } from "react-icons/md";
 import classnames from "classnames";
 
 interface ModalProps {
   // TODO: This doesn't seem to be a good design choise
-  outerModalHandler: Dispatch<SetStateAction<boolean>>;
-  isOpen: boolean;
-  classNames?: string;
+  readonly outerModalHandler: Dispatch<SetStateAction<boolean>>;
+  readonly isOpen: boolean;
+  readonly classNames?: string;
 }
 
 export const Modal: FC<ModalProps> = memo(

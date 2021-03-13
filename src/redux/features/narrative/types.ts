@@ -1,8 +1,8 @@
 export interface NarrativeState {
-  name: string;
-  warband: string;
+  readonly name: string;
+  readonly warband: string;
 }
 
 export interface NarrativeChangePayload {
-  value: string;
+  readonly value: string;
 }

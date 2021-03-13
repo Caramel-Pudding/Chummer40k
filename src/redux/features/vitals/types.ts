@@ -1,27 +1,27 @@
 import { HitLocation } from "./consts";
 
 interface Vitals {
-  current: number;
-  total: number;
+  readonly current: number;
+  readonly total: number;
 }
 
 interface CriticalDamage {
-  [HitLocation.Head]: number;
-  [HitLocation.LeftArm]: number;
-  [HitLocation.RightArm]: number;
-  [HitLocation.Torso]: number;
-  [HitLocation.LeftLeg]: number;
-  [HitLocation.RightLeg]: number;
+  readonly [HitLocation.Head]: number;
+  readonly [HitLocation.LeftArm]: number;
+  readonly [HitLocation.RightArm]: number;
+  readonly [HitLocation.Torso]: number;
+  readonly [HitLocation.LeftLeg]: number;
+  readonly [HitLocation.RightLeg]: number;
 }
 
 export interface VitalsState {
-  wounds: Vitals;
-  experience: Vitals;
-  currentInfamyPoints: number;
-  fatigue: number;
-  criticalDamage: CriticalDamage;
+  readonly wounds: Vitals;
+  readonly experience: Vitals;
+  readonly currentInfamyPoints: number;
+  readonly fatigue: number;
+  readonly criticalDamage: CriticalDamage;
 }
 
 export interface VitalsChangePayload {
-  value: string;
+  readonly value: string;
 }

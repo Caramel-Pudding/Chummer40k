@@ -8,9 +8,9 @@ import { HitLocation } from "@/redux/features/vitals/consts";
 import { TopPosition, LeftPosition } from "../../types";
 
 interface HitBoxProps {
-  xPosition: LeftPosition;
-  yLocation: TopPosition;
-  location: HitLocation;
+  readonly xPosition: LeftPosition;
+  readonly yLocation: TopPosition;
+  readonly location: HitLocation;
 }
 
 export const HitBox: FC<HitBoxProps> = memo(

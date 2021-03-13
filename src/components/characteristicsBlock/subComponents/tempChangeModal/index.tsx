@@ -21,9 +21,9 @@ import { Modal } from "@/components/shared/Modal";
 import { BasicInput } from "@/components/shared/BasicInput";
 
 interface TempChangeModalProps {
-  characteristicName: BCCharacteristic;
-  isOpen: boolean;
-  setIsModalOpen: Dispatch<SetStateAction<boolean>>;
+  readonly characteristicName: BCCharacteristic;
+  readonly isOpen: boolean;
+  readonly setIsModalOpen: Dispatch<SetStateAction<boolean>>;
 }
 
 export const TempChangeModal: FC<TempChangeModalProps> = memo(

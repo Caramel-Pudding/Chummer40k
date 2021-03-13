@@ -2,11 +2,11 @@ import React, { FC, memo, FormEvent, ReactText } from "react";
 import classnames from "classnames";
 
 interface BasicInputProps {
-  labelText: string;
-  value: ReactText;
-  handler: (event: string) => void;
-  labelClasses?: string;
-  inputClasses?: string;
+  readonly labelText: string;
+  readonly value: ReactText;
+  readonly handler: (event: string) => void;
+  readonly labelClasses?: string;
+  readonly inputClasses?: string;
 }
 
 export const BasicInput: FC<BasicInputProps> = memo(

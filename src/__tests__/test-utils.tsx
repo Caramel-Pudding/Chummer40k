@@ -37,9 +37,9 @@ export const initialStateMock: RootState = {
 };
 
 interface RenderProps {
-  initialState?: RootState;
-  store?: Store<RootState>;
-  renderOptions?: RenderOptions;
+  readonly initialState?: RootState;
+  readonly store?: Store<RootState>;
+  readonly renderOptions?: RenderOptions;
 }
 
 // Import your own reducer

@@ -15,7 +15,7 @@ import { TempChangeModal } from "../tempChangeModal";
 import { getCharacteristicRepresentation } from "../../helpers";
 
 interface CharacteristicBoxProps {
-  characteristicName: BCCharacteristic;
+  readonly characteristicName: BCCharacteristic;
 }
 
 export const CharacteristicBox: FC<CharacteristicBoxProps> = memo(
