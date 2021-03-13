@@ -25,6 +25,10 @@ import {
 
 import { BCCharacteristic } from "@/redux/features/characteristics/consts";
 
+import client, { Session } from "next-auth/client";
+
+jest.mock("next-auth/client");
+
 // CreateInitialState
 export const initialStateMock: RootState = {
   characteristics: getCharacteristicsInitialState(BCCharacteristic),
@@ -41,6 +45,15 @@ interface RenderProps {
 // Import your own reducer
 const reducer = combineReducers({ descriptors, characteristics, narrative });
 
+const mockSession: Session = {
+  expires: "1",
+  user: {
+    email: "fakemail@fakemails.com",
+    name: "It's me, Horus!",
+    image: "none",
+  },
+};
+
 const render = (
   ui: ReactElement,
   {
@@ -49,6 +62,7 @@ const render = (
     ...renderOptions
   }: RenderProps
 ): RenderResult<Queries, HTMLElement> => {
+  (client.useSession as jest.Mock).mockReturnValueOnce([mockSession, false]);
   const Wrapper: FC = ({ children }) => {
     return <Provider store={store}>{children}</Provider>;
   };
