@@ -2,7 +2,7 @@ import { createSlice, PayloadAction, createSelector } from "@reduxjs/toolkit";
 
 // eslint-disable-next-line import/no-cycle
 import { RootState } from "@/redux/store";
-import { stringEnumToArrayOfNames } from "@/utilities/arrays";
+import { convertStringEnumToArrayOfNames } from "@/utilities/arrays";
 
 import { CharacteristicInternals, CharacteristicChangePayload } from "./types";
 import { BCCharacteristic } from "./consts";
@@ -12,7 +12,7 @@ import { calculateCharacteristicBonus } from "./helpers";
 export const getInitialState = (
   characteristicsSet: typeof BCCharacteristic
 ): Record<BCCharacteristic, CharacteristicInternals> => {
-  return stringEnumToArrayOfNames(characteristicsSet).reduce(
+  return convertStringEnumToArrayOfNames(characteristicsSet).reduce(
     (state, characteristic) => ({
       ...state,
       [characteristic]: {

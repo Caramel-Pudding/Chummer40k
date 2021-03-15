@@ -1,5 +1,5 @@
-import { abbreviate } from "../strings";
 import { isString } from "../type-guards";
+import { abbreviate } from "../strings";
 
 describe("Abbreviate", () => {
   it("if input is string should return string", () => {
@@ -48,7 +48,7 @@ describe("Abbreviate", () => {
     it("if input is not string should throw error", () => {
       expect(() => {
         abbreviate(test as any);
-      }).toThrow("Wrong Type!");
+      }).toThrow();
     });
   });
 });

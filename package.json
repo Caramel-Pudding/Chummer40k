@@ -4,21 +4,23 @@
   "private": true,
   "scripts": {
     "dev": "NODE_OPTIONS='--inspect' next dev",
-    "dev-vitals": "NEXT_PUBLIC_VITALS=true NODE_OPTIONS='--inspect' next dev",
+    "dev:vitals": "NEXT_PUBLIC_VITALS=true NODE_OPTIONS='--inspect' next dev",
     "build": "next build",
     "start": "next start",
     "analyze": "ANALYZE=true next build",
-    "eslint": "eslint ./ --ext .js,.jsx,.ts,.tsx --cache",
-    "eslint-fix": "eslint ./ --ext .js,.jsx,.ts,.tsx --cache --fix",
-    "stylelint": "npx stylelint '**/*.css'",
-    "stylelint-fix": "npx stylelint '**/*.css' --fix",
     "test": "jest",
+    "test:watch": "yarn test --watch",
+    "test:coverage": "yarn test --coverage",
+    "eslint": "eslint ./ --ext .js,.jsx,.ts,.tsx --cache",
+    "eslint:fix": "eslint ./ --ext .js,.jsx,.ts,.tsx --cache --fix",
+    "stylelint": "npx stylelint '**/*.css'",
+    "stylelint:fix": "npx stylelint '**/*.css' --fix",
     "prepare": "husky install"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
       "yarn eslint --quiet",
-      "yarn stylelint-fix"
+      "yarn stylelint"
     ]
   },
   "jest": {

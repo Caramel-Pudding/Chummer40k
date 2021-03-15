@@ -21,7 +21,7 @@ import {
 } from "@/redux/features/descriptors/slice";
 import { useAppDispatch, useAppSelector } from "@/hooks/redux";
 import { BasicSelct } from "@/components/shared/BasicSelct";
-import { stringEnumToArrayOfNames } from "@/utilities/arrays";
+import { convertStringEnumToArrayOfNames } from "@/utilities/arrays";
 import styles from "./styles.module.css";
 
 export const Descriptos: FC = memo(() => {
@@ -42,7 +42,7 @@ export const Descriptos: FC = memo(() => {
         }
         labelClasses={classnames(styles.label)}
         labelText="Race"
-        options={stringEnumToArrayOfNames(Race)}
+        options={convertStringEnumToArrayOfNames(Race)}
         selectClasses={classnames(styles.select)}
       />
       <BasicSelct
@@ -54,8 +54,8 @@ export const Descriptos: FC = memo(() => {
         labelText="Archetype"
         options={
           race.name === Race.ChaosSpaceMarine
-            ? stringEnumToArrayOfNames(CSMArchetype)
-            : stringEnumToArrayOfNames(HumanArchetype)
+            ? convertStringEnumToArrayOfNames(CSMArchetype)
+            : convertStringEnumToArrayOfNames(HumanArchetype)
         }
         selectClasses={classnames(styles.select)}
       />
@@ -66,7 +66,7 @@ export const Descriptos: FC = memo(() => {
         }
         labelClasses={classnames(styles.label)}
         labelText="Pride"
-        options={stringEnumToArrayOfNames(Pride)}
+        options={convertStringEnumToArrayOfNames(Pride)}
         selectClasses={classnames(styles.select)}
       />
       <BasicSelct
@@ -76,7 +76,7 @@ export const Descriptos: FC = memo(() => {
         }
         labelClasses={classnames(styles.label)}
         labelText="Disgrace"
-        options={stringEnumToArrayOfNames(Disgrace)}
+        options={convertStringEnumToArrayOfNames(Disgrace)}
         selectClasses={classnames(styles.select)}
       />
       <BasicSelct
@@ -86,7 +86,7 @@ export const Descriptos: FC = memo(() => {
         }
         labelClasses={classnames(styles.label)}
         labelText="Motivation"
-        options={stringEnumToArrayOfNames(Motivation)}
+        options={convertStringEnumToArrayOfNames(Motivation)}
         selectClasses={classnames(styles.select)}
       />
       <BasicSelct
@@ -96,7 +96,7 @@ export const Descriptos: FC = memo(() => {
         }
         labelClasses={classnames(styles.label)}
         labelText="Alignment"
-        options={stringEnumToArrayOfNames(Alignment)}
+        options={convertStringEnumToArrayOfNames(Alignment)}
         selectClasses={classnames(styles.select)}
       />
     </>
