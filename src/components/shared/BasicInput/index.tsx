@@ -22,7 +22,14 @@ export const BasicInput: FC<BasicInputProps> = memo(
     };
 
     return (
-      <label className={classnames(containerClasses)}>
+      <label
+        className={classnames(
+          "flex",
+          "flex-row",
+          "justify-between",
+          containerClasses
+        )}
+      >
         {labelText}
         <input
           className={classnames(inputClasses)}

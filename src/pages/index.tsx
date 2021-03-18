@@ -3,12 +3,15 @@ import Head from "next/head";
 import classnames from "classnames";
 
 import { CharacterInfo } from "@/components/characterInfo";
-import { CharacteristicsBlock } from "@/components/characteristicsBlock";
+import { Characteristics } from "@/components/characteristicsBlock";
 import { HitLocations } from "@/components/hitLocations";
+import { Vitals } from "@/components/vitals";
 
 const Home: FC = () => {
   return (
-    <>
+    <main
+      className={classnames("grid", "grid-cols-2", "gap-x-4", "grid-rows-auto")}
+    >
       <Head>
         <title>Main Page</title>
         <link href="/favicon.ico" rel="icon" />
@@ -18,11 +21,12 @@ const Home: FC = () => {
         />
       </Head>
       <CharacterInfo />
-      <hr className={classnames("my-1", "border-gray-800")} />
-      <CharacteristicsBlock />
-      <hr className={classnames("my-1", "border-gray-800")} />
+      <section className={classnames("col-span-full")}>
+        <Characteristics />
+      </section>
       <HitLocations />
-    </>
+      <Vitals />
+    </main>
   );
 };
 

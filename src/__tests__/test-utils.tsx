@@ -22,6 +22,10 @@ import {
   reducer as narrative,
   initialState as narrativeInitialState,
 } from "@/redux/features/narrative/slice";
+import {
+  reducer as vitals,
+  initialState as vitalsInitialState,
+} from "@/redux/features/vitals/slice";
 
 import { BCCharacteristic } from "@/redux/features/characteristics/consts";
 
@@ -34,6 +38,7 @@ export const initialStateMock: RootState = {
   characteristics: getCharacteristicsInitialState(BCCharacteristic),
   descriptors: descriptorsInitialState,
   narrative: narrativeInitialState,
+  vitals: vitalsInitialState,
 };
 
 interface RenderProps {
@@ -43,7 +48,12 @@ interface RenderProps {
 }
 
 // Import your own reducer
-const reducer = combineReducers({ descriptors, characteristics, narrative });
+const reducer = combineReducers({
+  descriptors,
+  characteristics,
+  narrative,
+  vitals,
+});
 
 const mockSession: Session = {
   expires: "1",

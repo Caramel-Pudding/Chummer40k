@@ -1,7 +1,7 @@
 import React, { FC, memo } from "react";
 import classnames from "classnames";
 
-import { createCharacteristicTotalBonuslectorInstance } from "@/redux/features/characteristics/slice";
+import { createCharacteristicTotalBonusSelectorInstance } from "@/redux/features/characteristics/slice";
 import { BCCharacteristic } from "@/redux/features/characteristics/consts";
 import { useAppSelector } from "@/hooks/redux";
 import { HitLocation } from "@/redux/features/vitals/consts";
@@ -16,7 +16,7 @@ interface HitBoxProps {
 export const HitBox: FC<HitBoxProps> = memo(
   ({ location, xPosition, yLocation }) => {
     const toughnessTotalBonus = useAppSelector(
-      createCharacteristicTotalBonuslectorInstance(BCCharacteristic.Toughness)
+      createCharacteristicTotalBonusSelectorInstance(BCCharacteristic.Toughness)
     );
     return (
       <div

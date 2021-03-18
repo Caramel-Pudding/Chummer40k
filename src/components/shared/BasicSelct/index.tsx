@@ -26,7 +26,14 @@ export const BasicSelct: FC<BasicSelectProps> = memo(
     };
 
     return (
-      <label className={classnames(containerClasses)}>
+      <label
+        className={classnames(
+          "flex",
+          "flex-row",
+          "justify-between",
+          containerClasses
+        )}
+      >
         {labelText}
         <select
           className={classnames(selectClasses)}

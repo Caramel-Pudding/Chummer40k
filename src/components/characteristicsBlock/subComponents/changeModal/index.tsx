@@ -10,6 +10,7 @@ import classnames from "classnames";
 
 import { useAppDispatch, useAppSelector } from "@/hooks/redux";
 import {
+  setValue,
   setTempValueModifier,
   changeTempValueModifierByAmount,
   setTempBonusModifier,
@@ -20,15 +21,18 @@ import { BCCharacteristic } from "@/redux/features/characteristics/consts";
 import { Modal } from "@/components/shared/Modal";
 import { BasicInput } from "@/components/shared/BasicInput";
 
-interface TempChangeModalProps {
+interface ChangeModalProps {
   readonly characteristicName: BCCharacteristic;
   readonly isOpen: boolean;
   readonly setIsModalOpen: Dispatch<SetStateAction<boolean>>;
 }
 
-export const TempChangeModal: FC<TempChangeModalProps> = memo(
+export const ChangeModal: FC<ChangeModalProps> = memo(
   ({ isOpen, characteristicName, setIsModalOpen }) => {
     const dispatch = useAppDispatch();
+    const characteristicValue = useAppSelector(
+      (state) => state.characteristics[characteristicName].value
+    );
     const tempValueModifier = useAppSelector(
       (state) => state.characteristics[characteristicName].tempValueModifier
     );
@@ -36,15 +40,27 @@ export const TempChangeModal: FC<TempChangeModalProps> = memo(
       (state) => state.characteristics[characteristicName].tempBonusModifier
     );
 
+    const [inputPersistentValue, setInputPersistentValue] = useState<ReactText>(
+      0
+    );
     const [inputValue, setInputValue] = useState<ReactText>(0);
     const [inputBonus, setInputBonus] = useState<ReactText>(0);
 
     const resetInputs = () => {
+      setInputPersistentValue(0);
       setInputValue(0);
       setInputBonus(0);
     };
 
     const applyHandler = () => {
+      if (inputPersistentValue) {
+        dispatch(
+          setValue({
+            characteristic: characteristicName,
+            value: Number(inputPersistentValue),
+          })
+        );
+      }
       dispatch(
         changeTempValueModifierByAmount({
           characteristic: characteristicName,
@@ -74,42 +90,68 @@ export const TempChangeModal: FC<TempChangeModalProps> = memo(
 
     return (
       <Modal isOpen={isOpen} outerModalHandler={setIsModalOpen}>
+        <span className={classnames("mx-auto", "mb-2", "text-white")}>
+          {characteristicName}
+        </span>
+        <BasicInput
+          handler={(value) => setInputPersistentValue(value)}
+          inputClasses={classnames("w-16", "ml-2", "text-black")}
+          labelClasses={classnames(
+            "flex",
+            "justify-between",
+            "text-sm",
+            "text-white"
+          )}
+          labelText="Persistent Value:"
+          value={inputPersistentValue}
+        />
+        <span className={classnames("text-xs", "mt-1", "mb-4", "text-white")}>
+          Current Persistent Value: {characteristicValue}
+        </span>
         <BasicInput
           handler={(value) => setInputValue(value)}
-          inputClasses={classnames("w-16", "ml-2")}
-          labelClasses={classnames("flex", "justify-around", "text-sm")}
+          inputClasses={classnames("w-16", "ml-2", "text-black")}
+          labelClasses={classnames(
+            "flex",
+            "justify-between",
+            "text-sm",
+            "text-white"
+          )}
           labelText="Value:"
           value={inputValue}
         />
-        <span className={classnames("text-xs")}>
+        <span className={classnames("text-xs", "mt-1", "mb-4", "text-white")}>
           Current modifier: {tempValueModifier}
         </span>
-        <br />
         <BasicInput
           handler={(value) => setInputBonus(value)}
-          inputClasses={classnames("w-16", "ml-2")}
-          labelClasses={classnames("flex", "justify-around", "text-sm")}
+          inputClasses={classnames("w-16", "ml-2", "text-black")}
+          labelClasses={classnames(
+            "flex",
+            "justify-between",
+            "text-sm",
+            "text-white"
+          )}
           labelText="Bonus:"
           value={inputBonus}
         />
-        <span className={classnames("text-xs")}>
+        <span className={classnames("text-xs", "mt-1", "mb-4", "text-white")}>
           Current modifier: {tempBonusModifier}
         </span>
-        <br />
-        <div className={classnames("flex", "justify-around")}>
+        <div className={classnames("flex", "justify-between")}>
           <button
-            className={classnames("text-sm")}
+            className={classnames("text-sm", "text-white")}
             type="button"
             onClick={applyHandler}
           >
-            Apply
+            APPLY
           </button>
           <button
-            className={classnames("text-sm")}
+            className={classnames("text-sm", "text-white")}
             type="button"
             onClick={resetHandler}
           >
-            Reset
+            RESET
           </button>
         </div>
       </Modal>

@@ -16,9 +16,9 @@ export const Layout: FC = memo(({ children }) => (
     </Head>
     <div className={classnames("h-screen", "w-screen")}>
       <Header />
-      <main className={classnames("h-full", "p-2", "bg-gray-300")}>
+      <div className={classnames("h-full", "p-2", "bg-gray-300")}>
         {children}
-      </main>
+      </div>
     </div>
   </>
 ));

@@ -4,14 +4,15 @@ import { MdModeEdit } from "react-icons/md";
 import classnames from "classnames";
 
 import {
-  createCharacteristicTotalBonuslectorInstance,
+  createCharacteristicTotalBonusSelectorInstance,
   createCharacteristicTotalValueSelectorInstance,
   setValue,
 } from "@/redux/features/characteristics/slice";
 import { useAppDispatch, useAppSelector } from "@/hooks/redux";
 import { BCCharacteristic } from "@/redux/features/characteristics/consts";
 
-import { TempChangeModal } from "../tempChangeModal";
+import { BasicShowBox } from "@/components/shared/BasicShowBox";
+import { ChangeModal } from "../changeModal";
 import { getCharacteristicRepresentation } from "../../helpers";
 
 interface CharacteristicBoxProps {
@@ -20,53 +21,42 @@ interface CharacteristicBoxProps {
 
 export const CharacteristicBox: FC<CharacteristicBoxProps> = memo(
   ({ characteristicName }) => {
-    const dispatch = useAppDispatch();
-
     const characteristicTotalValue = useAppSelector(
       createCharacteristicTotalValueSelectorInstance(characteristicName)
     );
     const characteristicTotalBonus = useAppSelector(
-      createCharacteristicTotalBonuslectorInstance(characteristicName)
+      createCharacteristicTotalBonusSelectorInstance(characteristicName)
     );
 
-    const [isTempChangeModalOpen, setIsTempChangeModalOpen] = useState<boolean>(
-      false
-    );
+    const [isChangeModalOpen, setIsChangeModalOpen] = useState<boolean>(false);
 
-    const valueInputHandler = (event: FormEvent<HTMLInputElement>): void => {
-      dispatch(
-        setValue({
-          characteristic: characteristicName,
-          value: Number(event.currentTarget.value),
-        })
-      );
-    };
-
-    const tempChangeClickHandler = () => {
-      setIsTempChangeModalOpen(true);
+    const changeClickHandler = () => {
+      setIsChangeModalOpen(true);
     };
 
     return (
       <>
-        <TempChangeModal
+        <ChangeModal
           characteristicName={characteristicName}
-          isOpen={isTempChangeModalOpen}
-          setIsModalOpen={setIsTempChangeModalOpen}
+          isOpen={isChangeModalOpen}
+          setIsModalOpen={setIsChangeModalOpen}
         />
-        <div className={classnames("flex", "flex-col")}>
-          <label className={classnames("text-xs")}>
-            <span>{getCharacteristicRepresentation(characteristicName)}</span>
-            <span>{characteristicTotalBonus}</span>
-            <input
-              className={classnames("w-10/12")}
-              type="number"
-              value={characteristicTotalValue || ""}
-              onChange={valueInputHandler}
-            />
-          </label>
-          <MdModeEdit
-            className="cursor-pointer"
-            onClick={tempChangeClickHandler}
+        <div
+          className={classnames(
+            "flex",
+            "flex-col",
+            "w-1/6",
+            "mx-0.5",
+            "my-0.5"
+          )}
+        >
+          <span className={classnames("text-xs", "font-bold")}>
+            {getCharacteristicRepresentation(characteristicName)}
+          </span>
+          <BasicShowBox
+            boxClasses={classnames("text-xs")}
+            handleClick={changeClickHandler}
+            text={`${characteristicTotalValue} [${characteristicTotalBonus}]`}
           />
         </div>
       </>

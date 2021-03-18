@@ -17,7 +17,7 @@ export const MainIdentifiers: FC = memo(() => {
         handler={(value) => dispatch(setName({ value }))}
         inputClasses={classnames(styles.input)}
         labelClasses={classnames(styles.label)}
-        labelText="Character Name"
+        labelText="Name"
         value={name}
       />
       <BasicInput

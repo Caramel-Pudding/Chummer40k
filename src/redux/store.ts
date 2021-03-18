@@ -4,6 +4,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import { reducer as characteristics } from "@/redux/features/characteristics/slice";
 import { reducer as descriptors } from "@/redux/features/descriptors/slice";
 import { reducer as narrative } from "@/redux/features/narrative/slice";
+import { reducer as vitals } from "@/redux/features/vitals/slice";
 /* eslint-enable import/no-cycle */
 
 export const store = configureStore({
@@ -11,6 +12,7 @@ export const store = configureStore({
     descriptors,
     characteristics,
     narrative,
+    vitals,
   },
 });
 

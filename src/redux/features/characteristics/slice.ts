@@ -97,7 +97,7 @@ export const createCharacteristicTotalValueSelectorInstance = (
       characteristics[characteristicName].tempValueModifier
   );
 
-export const createCharacteristicTotalBonuslectorInstance = (
+export const createCharacteristicTotalBonusSelectorInstance = (
   characteristicName: BCCharacteristic
 ) =>
   createSelector(
