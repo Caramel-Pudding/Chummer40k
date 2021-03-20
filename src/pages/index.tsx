@@ -9,19 +9,26 @@ import { Vitals } from "@/components/mainPage/vitals";
 
 const Home: FC = () => {
   return (
-    <main
-      className={classnames("grid", "grid-cols-2", "gap-x-4", "grid-rows-auto")}
-    >
+    <>
       <Head>
         <title>Main Page</title>
       </Head>
-      <CharacterInfo />
-      <section className={classnames("col-span-full")}>
-        <Characteristics />
-      </section>
-      <HitLocations />
-      <Vitals />
-    </main>
+      <main
+        className={classnames(
+          "grid",
+          "grid-cols-2",
+          "gap-x-4",
+          "grid-rows-auto"
+        )}
+      >
+        <CharacterInfo />
+        <section className={classnames("col-span-full")}>
+          <Characteristics />
+        </section>
+        <HitLocations />
+        <Vitals />
+      </main>
+    </>
   );
 };
 

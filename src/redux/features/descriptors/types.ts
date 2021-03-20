@@ -11,7 +11,7 @@ import type {
 } from "./consts";
 
 export interface Descriptor<T extends DescriptorsUnion> {
-  readonly name?: T;
+  readonly name: T;
   readonly characteristicModfiier?: CharacteristicModifier;
   readonly woundsModifier?: number;
   readonly specialModifier?: string;

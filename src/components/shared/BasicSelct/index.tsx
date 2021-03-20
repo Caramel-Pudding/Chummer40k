@@ -4,7 +4,7 @@ import classnames from "classnames";
 interface BasicSelectProps {
   readonly labelText: string;
   readonly options: string[];
-  readonly chosenOption?: string;
+  readonly chosenOption: string;
   readonly handler: (event: string) => void;
   readonly labelClasses?: string;
   readonly selectClasses?: string;

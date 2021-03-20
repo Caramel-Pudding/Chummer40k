@@ -1,0 +1,11 @@
+.table {
+  @apply table-auto w-full;
+}
+
+.tableHeader {
+  @apply bg-gray-600 text-white;
+}
+
+.tableCell {
+  @apply border border-black text-xs;
+}

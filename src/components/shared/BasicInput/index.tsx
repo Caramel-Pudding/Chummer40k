@@ -5,6 +5,7 @@ interface BasicInputProps {
   readonly labelText: string;
   readonly value: ReactText;
   readonly handler: (event: string) => void;
+  readonly type?: "text" | "number";
   readonly labelClasses?: string;
   readonly inputClasses?: string;
 }
@@ -14,6 +15,7 @@ export const BasicInput: FC<BasicInputProps> = memo(
     labelText,
     value,
     handler,
+    type = "text",
     labelClasses: containerClasses = "",
     inputClasses = "",
   }) => {
@@ -33,7 +35,7 @@ export const BasicInput: FC<BasicInputProps> = memo(
         {labelText}
         <input
           className={classnames(inputClasses)}
-          type="text"
+          type={type}
           value={value}
           onChange={selectHandler}
         />

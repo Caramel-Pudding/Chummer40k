@@ -1,7 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 // eslint-disable-next-line import/no-cycle
-import { RootState } from "@/redux/store";
 import {
   DescriptorsState,
   DescriptorChangePayload,
@@ -9,6 +8,7 @@ import {
 } from "./types";
 import {
   Race,
+  HumanArchetype,
   Pride,
   Disgrace,
   Motivation,
@@ -18,11 +18,11 @@ import {
 
 // Define the initial state using that type
 export const initialState: DescriptorsState = {
-  race: {},
-  archetype: {},
-  pride: {},
-  disgrade: {},
-  motivation: {},
+  race: { name: Race.Human },
+  archetype: { name: HumanArchetype.Apostate },
+  pride: { name: Pride.Beauty },
+  disgrade: { name: Disgrace.Betrayal },
+  motivation: { name: Motivation.Arcane },
   alignment: Alignment.Unaligned,
 };
 

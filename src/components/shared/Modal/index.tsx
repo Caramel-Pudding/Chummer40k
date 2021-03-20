@@ -37,7 +37,8 @@ export const Modal: FC<ModalProps> = memo(
               "flex-row",
               "justify-end",
               "cursor-pointer",
-              "text-white"
+              "text-white",
+              "mb-2"
             )}
           >
             <MdClose onClick={() => outerModalHandler(false)} />
