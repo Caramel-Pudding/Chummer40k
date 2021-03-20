@@ -25,3 +25,8 @@ export interface VitalsState {
 export interface VitalsChangePayload {
   readonly value: string;
 }
+
+export interface InfamyPointsChangePayload {
+  readonly newValue: number;
+  readonly maximalValue: number;
+}

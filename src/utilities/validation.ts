@@ -1,16 +1,3 @@
-export const setMaxValidation = ({
-  newValue,
-  maximalValue,
-}: {
-  newValue: number;
-  maximalValue: number;
-}): number => {
-  if (newValue > maximalValue) {
-    return maximalValue;
-  }
-  return newValue;
-};
-
 export const setMinValidation = ({
   newValue,
   minimalValue = 0,
@@ -20,6 +7,19 @@ export const setMinValidation = ({
 }): number => {
   if (newValue < minimalValue) {
     return minimalValue;
+  }
+  return newValue;
+};
+
+export const setMaxValidation = ({
+  newValue,
+  maximalValue,
+}: {
+  newValue: number;
+  maximalValue: number;
+}): number => {
+  if (newValue > maximalValue) {
+    return maximalValue;
   }
   return newValue;
 };
@@ -42,6 +42,38 @@ export const setMinMaxValidation = ({
   return newValue;
 };
 
+export const modificationMinValidation = ({
+  modifier,
+  currentValue,
+  minimalValue = 0,
+}: {
+  modifier: number;
+  currentValue: number;
+  minimalValue?: number;
+}): number => {
+  const newValue = currentValue + modifier;
+  if (newValue < minimalValue) {
+    return minimalValue;
+  }
+  return newValue;
+};
+
+export const modificationMaxValidation = ({
+  modifier,
+  currentValue,
+  maximalValue,
+}: {
+  modifier: number;
+  currentValue: number;
+  maximalValue: number;
+}): number => {
+  const newValue = currentValue + modifier;
+  if (newValue > maximalValue) {
+    return maximalValue;
+  }
+  return newValue;
+};
+
 export const modificationMinMaxValidation = ({
   modifier,
   currentValue,
@@ -57,22 +89,6 @@ export const modificationMinMaxValidation = ({
   if (newValue > maximalValue) {
     return maximalValue;
   }
-  if (newValue < minimalValue) {
-    return minimalValue;
-  }
-  return newValue;
-};
-
-export const modificationMinValidation = ({
-  modifier,
-  currentValue,
-  minimalValue = 0,
-}: {
-  modifier: number;
-  currentValue: number;
-  minimalValue?: number;
-}): number => {
-  const newValue = currentValue + modifier;
   if (newValue < minimalValue) {
     return minimalValue;
   }

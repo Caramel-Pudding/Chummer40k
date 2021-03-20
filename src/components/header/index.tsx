@@ -1,10 +1,12 @@
 import React, { FC, memo } from "react";
+import { useRouter } from "next/router";
 import Link from "next/link";
 import classnames from "classnames";
 import { useSession, signIn, signOut } from "next-auth/client";
 
 export const Header: FC = memo(() => {
   const [session, isLoading] = useSession();
+  const currentPath = useRouter().pathname;
 
   const renderRightheaderPart = () => {
     if (isLoading) {
@@ -40,9 +42,15 @@ export const Header: FC = memo(() => {
         "text-sm"
       )}
     >
-      <Link href="/">
-        <a>Menu</a>
-      </Link>
+      <div>
+        <Link href="/">
+          <a>Menu</a>
+        </Link>
+        <Link href="inventory">
+          <a>Inventory</a>
+        </Link>
+      </div>
+      <h1>{currentPath}</h1>
       {renderRightheaderPart()}
     </header>
   );

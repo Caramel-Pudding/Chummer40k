@@ -1,3 +1,4 @@
+import { arrayOfNonStringValues } from "@/tests/consts";
 import { isString } from "../type-guards";
 import { abbreviate } from "../strings";
 
@@ -42,9 +43,7 @@ describe("Abbreviate", () => {
     });
   });
 
-  // INVALID TEST DATA
-  const invalidTestCases = [null, undefined, 0, {}, {}, true];
-  invalidTestCases.forEach((test) => {
+  arrayOfNonStringValues.forEach((test) => {
     it("if input is not string should throw error", () => {
       expect(() => {
         abbreviate(test as any);

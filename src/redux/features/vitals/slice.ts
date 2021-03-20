@@ -3,15 +3,14 @@ import { createSlice, PayloadAction, createSelector } from "@reduxjs/toolkit";
 import { RootState } from "@/redux/store";
 import { BCCharacteristic } from "@/redux/features/characteristics/consts";
 import { createCharacteristicTotalBonusSelectorInstance } from "@/redux/features/characteristics/slice";
-import { HitLocation } from "./consts";
-import { VitalsState } from "./types";
 import {
   setMinValidation,
   setMaxValidation,
-  setMinMaxValidation,
   modificationMinValidation,
   modificationMinMaxValidation,
-} from "./helpers";
+} from "@/utilities/validation";
+import { HitLocation } from "./consts";
+import { VitalsState, InfamyPointsChangePayload } from "./types";
 
 // Define the initial state using that type
 export const initialState: VitalsState = {
@@ -60,11 +59,15 @@ export const vitalsSlice = createSlice({
         currentValue: state.fatigue,
       });
     },
-    changeCurrentInfamyPoints: (state, action: PayloadAction<number>) => {
+    changeCurrentInfamyPoints: (
+      state,
+      action: PayloadAction<InfamyPointsChangePayload>
+    ) => {
       // TODO: Find a way to setup maximal validation
-      state.currentInfamyPoints = modificationMinValidation({
-        modifier: action.payload,
+      state.currentInfamyPoints = modificationMinMaxValidation({
+        modifier: action.payload.newValue,
         currentValue: state.currentInfamyPoints,
+        maximalValue: action.payload.maximalValue,
       });
     },
     /* eslint-enable no-param-reassign */

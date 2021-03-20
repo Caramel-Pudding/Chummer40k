@@ -1,82 +1,48 @@
 import React, { ReactElement, FC } from "react";
 import {
-  render as rtlRender,
+  render as defaultRender,
   RenderOptions,
   RenderResult,
   Queries,
 } from "@testing-library/react";
-import { createStore, combineReducers, Store } from "@reduxjs/toolkit";
-import { Provider } from "react-redux";
 
+import { createStore, Store } from "@reduxjs/toolkit";
+import { Provider } from "react-redux";
 import { RootState } from "@/redux/store";
 
-import {
-  reducer as characteristics,
-  getInitialState as getCharacteristicsInitialState,
-} from "@/redux/features/characteristics/slice";
-import {
-  reducer as descriptors,
-  initialState as descriptorsInitialState,
-} from "@/redux/features/descriptors/slice";
-import {
-  reducer as narrative,
-  initialState as narrativeInitialState,
-} from "@/redux/features/narrative/slice";
-import {
-  reducer as vitals,
-  initialState as vitalsInitialState,
-} from "@/redux/features/vitals/slice";
+import { RouterContext } from "next/dist/next-server/lib/router-context";
+import { NextRouter } from "next/router";
 
-import { BCCharacteristic } from "@/redux/features/characteristics/consts";
+import client from "next-auth/client";
 
-import client, { Session } from "next-auth/client";
+import { reducer, initialStateMock, mockSession, mockRouter } from "./mocks";
 
 jest.mock("next-auth/client");
-
-// CreateInitialState
-export const initialStateMock: RootState = {
-  characteristics: getCharacteristicsInitialState(BCCharacteristic),
-  descriptors: descriptorsInitialState,
-  narrative: narrativeInitialState,
-  vitals: vitalsInitialState,
-};
-
 interface RenderProps {
   readonly initialState?: RootState;
   readonly store?: Store<RootState>;
+  readonly router?: Partial<NextRouter>;
   readonly renderOptions?: RenderOptions;
 }
-
-// Import your own reducer
-const reducer = combineReducers({
-  descriptors,
-  characteristics,
-  narrative,
-  vitals,
-});
-
-const mockSession: Session = {
-  expires: "1",
-  user: {
-    email: "fakemail@fakemails.com",
-    name: "It's me, Horus!",
-    image: "none",
-  },
-};
 
 const render = (
   ui: ReactElement,
   {
     initialState = initialStateMock,
     store = createStore(reducer, initialState),
+    router,
     ...renderOptions
   }: RenderProps
 ): RenderResult<Queries, HTMLElement> => {
   (client.useSession as jest.Mock).mockReturnValueOnce([mockSession, false]);
-  const Wrapper: FC = ({ children }) => {
-    return <Provider store={store}>{children}</Provider>;
+  const wrapper: FC = ({ children }) => {
+    return (
+      <RouterContext.Provider value={{ ...mockRouter, ...router }}>
+        <Provider store={store}>{children}</Provider>
+      </RouterContext.Provider>
+    );
   };
-  return rtlRender(ui, { wrapper: Wrapper, ...renderOptions });
+  return defaultRender(ui, { wrapper, ...renderOptions });
 };
 
 // re-export everything

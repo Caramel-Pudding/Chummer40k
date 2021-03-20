@@ -1,40 +1,26 @@
-import { isString } from "../type-guards";
+import { arrayOfAllBasicTypes } from "@/tests/consts";
+import { isString, isNumber } from "../type-guards";
 
-describe("isString", () => {
-  // TEST DATA
-  const testCases = [
-    {
-      input: "",
-      expected: true,
-    },
-    {
-      input: null,
-      expected: false,
-    },
-    {
-      input: undefined,
-      expected: false,
-    },
-    {
-      input: 0,
-      expected: false,
-    },
-    {
-      input: {},
-      expected: false,
-    },
-    {
-      input: true,
-      expected: false,
-    },
-  ];
+const testPrimitiveTypeGuard = (
+  typeGuard: (value: any) => boolean,
+  type: "string" | "number"
+) => {
+  arrayOfAllBasicTypes.forEach((testValue) => {
+    const isCorrectType = typeof testValue === type;
 
-  testCases.forEach((test) => {
-    it(`if input input type is: ${typeof test.input} should correctly abbreviate it to: ${String(
-      test.expected
+    it(`if input input type is: ${typeof testValue} should return: ${String(
+      isCorrectType
     )}`, () => {
-      const result = isString(test.input);
-      expect(result).toEqual(test.expected);
+      const result = typeGuard(testValue);
+      expect(result).toEqual(isCorrectType);
     });
   });
+};
+
+describe("isString", () => {
+  testPrimitiveTypeGuard(isString, "string");
+});
+
+describe("isNumber", () => {
+  testPrimitiveTypeGuard(isNumber, "number");
 });

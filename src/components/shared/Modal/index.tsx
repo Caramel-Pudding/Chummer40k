@@ -26,6 +26,7 @@ export const Modal: FC<ModalProps> = memo(
             "fixed",
             "p-4",
             "bg-gray-600",
+            "whitespace-nowrap",
             "shadow-md",
             classNames
           )}

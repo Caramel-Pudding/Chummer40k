@@ -18,9 +18,23 @@ export const InfamyPoints: FC = memo(() => {
   );
   return (
     <VitalsBlock
-      decrementValue={() => dispatch(changeCurrentInfamyPoints(-1))}
+      decrementValue={() =>
+        dispatch(
+          changeCurrentInfamyPoints({
+            newValue: -1,
+            maximalValue: totalInfamyPoints,
+          })
+        )
+      }
       editClickHandler={() => ""}
-      incrementValue={() => dispatch(changeCurrentInfamyPoints(1))}
+      incrementValue={() =>
+        dispatch(
+          changeCurrentInfamyPoints({
+            newValue: 1,
+            maximalValue: totalInfamyPoints,
+          })
+        )
+      }
       labelText="Infamy Points"
       values={`${currentInfamyPoints}/${totalInfamyPoints}`}
     />

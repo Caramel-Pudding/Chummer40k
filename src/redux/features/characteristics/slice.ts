@@ -3,6 +3,13 @@ import { createSlice, PayloadAction, createSelector } from "@reduxjs/toolkit";
 // eslint-disable-next-line import/no-cycle
 import { RootState } from "@/redux/store";
 import { convertStringEnumToArrayOfNames } from "@/utilities/arrays";
+import {
+  setMinValidation,
+  setMaxValidation,
+  modificationMinValidation,
+  modificationMinMaxValidation,
+  setMinMaxValidation,
+} from "@/utilities/validation";
 
 import { CharacteristicInternals, CharacteristicChangePayload } from "./types";
 import { BCCharacteristic } from "./consts";
@@ -33,13 +40,22 @@ export const characteristicsSlice = createSlice({
   /* eslint-disable no-param-reassign */
   reducers: {
     setValue: (state, action: PayloadAction<CharacteristicChangePayload>) => {
-      state[action.payload.characteristic].value = action.payload.value;
+      state[action.payload.characteristic].value = setMinMaxValidation({
+        newValue: action.payload.value,
+        maximalValue: 100,
+      });
     },
     changeValueByAmount: (
       state,
       action: PayloadAction<CharacteristicChangePayload>
     ) => {
-      state[action.payload.characteristic].value += action.payload.value;
+      state[action.payload.characteristic].value = modificationMinMaxValidation(
+        {
+          modifier: action.payload.value,
+          currentValue: state[action.payload.characteristic].value,
+          maximalValue: 100,
+        }
+      );
     },
     setTempValueModifier: (
       state,

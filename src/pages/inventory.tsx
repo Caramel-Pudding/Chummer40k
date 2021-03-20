@@ -13,7 +13,7 @@ const Home: FC = () => {
       className={classnames("grid", "grid-cols-2", "gap-x-4", "grid-rows-auto")}
     >
       <Head>
-        <title>Main Page</title>
+        <title>Inventory</title>
       </Head>
       <CharacterInfo />
       <section className={classnames("col-span-full")}>

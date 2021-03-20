@@ -17,7 +17,13 @@ class MyDocument extends Document {
   render(): JSX.Element {
     return (
       <Html lang="en">
-        <Head />
+        <Head>
+          <link href="/favicon.ico" rel="icon" />
+          <meta
+            content="Warhammer 40000 Tabletop RPG Character Generator."
+            name="description"
+          />
+        </Head>
         <body>
           <Main />
           <NextScript />
