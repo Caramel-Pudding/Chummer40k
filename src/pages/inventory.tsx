@@ -2,11 +2,6 @@ import React, { FC, memo } from "react";
 import Head from "next/head";
 import classnames from "classnames";
 
-import { CharacterInfo } from "@/components/characterInfo";
-import { Characteristics } from "@/components/characteristicsBlock";
-import { HitLocations } from "@/components/hitLocations";
-import { Vitals } from "@/components/vitals";
-
 const Home: FC = () => {
   return (
     <main
@@ -15,12 +10,24 @@ const Home: FC = () => {
       <Head>
         <title>Inventory</title>
       </Head>
-      <CharacterInfo />
-      <section className={classnames("col-span-full")}>
-        <Characteristics />
-      </section>
-      <HitLocations />
-      <Vitals />
+      <table
+        className={classnames(
+          "table-auto",
+          "border-1",
+          "border-black",
+          "text-xs"
+        )}
+      >
+        <tr>
+          <th>Type</th>
+          <th>Name</th>
+          <th>Weight</th>
+        </tr>
+        <tr>
+          <th>Weapon</th>
+          <th>Power Sword</th>
+        </tr>
+      </table>
     </main>
   );
 };

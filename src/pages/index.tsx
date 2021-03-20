@@ -2,10 +2,10 @@ import React, { FC, memo } from "react";
 import Head from "next/head";
 import classnames from "classnames";
 
-import { CharacterInfo } from "@/components/characterInfo";
-import { Characteristics } from "@/components/characteristicsBlock";
-import { HitLocations } from "@/components/hitLocations";
-import { Vitals } from "@/components/vitals";
+import { CharacterInfo } from "@/components/mainPage/characterInfo";
+import { Characteristics } from "@/components/mainPage/characteristicsBlock";
+import { HitLocations } from "@/components/mainPage/hitLocations";
+import { Vitals } from "@/components/mainPage/vitals";
 
 const Home: FC = () => {
   return (
