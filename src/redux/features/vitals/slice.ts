@@ -4,10 +4,9 @@ import { RootState } from "@/redux/store";
 import { BCCharacteristic } from "@/redux/features/characteristics/consts";
 import { createCharacteristicTotalBonusSelectorInstance } from "@/redux/features/characteristics/slice";
 import {
-  setMinValidation,
-  setMaxValidation,
-  modificationMinValidation,
-  modificationMinMaxValidation,
+  validateMin,
+  validateMax,
+  validateMinMax,
 } from "@/utilities/validation";
 import { HitLocation } from "./consts";
 import { VitalsState, InfamyPointsChangePayload } from "./types";
@@ -35,28 +34,26 @@ export const vitalsSlice = createSlice({
   /* eslint-disable no-param-reassign */
   reducers: {
     setTotalWounds: (state, action: PayloadAction<number>) => {
-      state.wounds.total = setMinValidation({ newValue: action.payload });
+      state.wounds.total = validateMin({ newValue: action.payload });
     },
     setCurrentWounds: (state, action: PayloadAction<number>) => {
-      state.wounds.current = setMaxValidation({
+      state.wounds.current = validateMinMax({
         newValue: action.payload,
         maximalValue: state.wounds.total,
       });
     },
     changeCurrentWounds: (state, action: PayloadAction<number>) => {
-      state.wounds.current = modificationMinMaxValidation({
-        modifier: action.payload,
-        currentValue: state.wounds.current,
+      state.wounds.current = validateMinMax({
+        newValue: state.wounds.current + action.payload,
         maximalValue: state.wounds.total,
       });
     },
     setCurrentFatigue: (state, action: PayloadAction<number>) => {
-      state.fatigue = setMinValidation({ newValue: action.payload });
+      state.fatigue = validateMin({ newValue: action.payload });
     },
     changeCurrentFatigue: (state, action: PayloadAction<number>) => {
-      state.fatigue = modificationMinValidation({
-        modifier: action.payload,
-        currentValue: state.fatigue,
+      state.fatigue = validateMin({
+        newValue: state.fatigue + action.payload,
       });
     },
     changeCurrentInfamyPoints: (
@@ -64,9 +61,8 @@ export const vitalsSlice = createSlice({
       action: PayloadAction<InfamyPointsChangePayload>
     ) => {
       // TODO: Find a way to setup maximal validation
-      state.currentInfamyPoints = modificationMinMaxValidation({
-        modifier: action.payload.newValue,
-        currentValue: state.currentInfamyPoints,
+      state.currentInfamyPoints = validateMinMax({
+        newValue: state.currentInfamyPoints + action.payload.newValue,
         maximalValue: action.payload.maximalValue,
       });
     },

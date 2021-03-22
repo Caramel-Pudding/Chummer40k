@@ -1,40 +1,14 @@
-export const setMinValidation = ({
+import { isNumber } from "./type-guards";
+
+export const validateMin = ({
   newValue,
   minimalValue = 0,
 }: {
   newValue: number;
   minimalValue?: number;
 }): number => {
-  if (newValue < minimalValue) {
-    return minimalValue;
-  }
-  return newValue;
-};
-
-export const setMaxValidation = ({
-  newValue,
-  maximalValue,
-}: {
-  newValue: number;
-  maximalValue: number;
-}): number => {
-  if (newValue > maximalValue) {
-    return maximalValue;
-  }
-  return newValue;
-};
-
-export const setMinMaxValidation = ({
-  newValue,
-  maximalValue,
-  minimalValue = 0,
-}: {
-  newValue: number;
-  maximalValue: number;
-  minimalValue?: number;
-}): number => {
-  if (newValue > maximalValue) {
-    return maximalValue;
+  if (!isNumber(newValue) || !isNumber(minimalValue)) {
+    throw new Error("Trying to validate non-number as number");
   }
   if (newValue < minimalValue) {
     return minimalValue;
@@ -42,50 +16,38 @@ export const setMinMaxValidation = ({
   return newValue;
 };
 
-export const modificationMinValidation = ({
-  modifier,
-  currentValue,
-  minimalValue = 0,
-}: {
-  modifier: number;
-  currentValue: number;
-  minimalValue?: number;
-}): number => {
-  const newValue = currentValue + modifier;
-  if (newValue < minimalValue) {
-    return minimalValue;
-  }
-  return newValue;
-};
-
-export const modificationMaxValidation = ({
-  modifier,
-  currentValue,
+export const validateMax = ({
+  newValue,
   maximalValue,
 }: {
-  modifier: number;
-  currentValue: number;
+  newValue: number;
   maximalValue: number;
 }): number => {
-  const newValue = currentValue + modifier;
+  if (!isNumber(newValue) || !isNumber(maximalValue)) {
+    throw new Error("Trying to validate non-number as number");
+  }
   if (newValue > maximalValue) {
     return maximalValue;
   }
   return newValue;
 };
 
-export const modificationMinMaxValidation = ({
-  modifier,
-  currentValue,
+export const validateMinMax = ({
+  newValue,
   maximalValue,
   minimalValue = 0,
 }: {
-  modifier: number;
-  currentValue: number;
+  newValue: number;
   maximalValue: number;
   minimalValue?: number;
 }): number => {
-  const newValue = currentValue + modifier;
+  if (
+    !isNumber(newValue) ||
+    !isNumber(minimalValue) ||
+    !isNumber(maximalValue)
+  ) {
+    throw new Error("Trying to validate non-number as number");
+  }
   if (newValue > maximalValue) {
     return maximalValue;
   }

@@ -1,14 +1,122 @@
-import {
-  setMaxValidation,
-  setMinValidation,
-  setMinMaxValidation,
-  modificationMinValidation,
-  modificationMaxValidation,
-  modificationMinMaxValidation,
-} from "../validation";
+import { arrayOfNonNumericValues } from "@/tests/consts";
+import { validateMin, validateMax, validateMinMax } from "../validation";
 
-describe("Set Min Validation", () => {
-  it("noop", () => {
-    expect(true).toBe(true);
+describe("Min Validation", () => {
+  const minValidationTestCases = [
+    { newValue: 100, expected: 100 },
+    { newValue: 0, expected: 0 },
+    { newValue: -100, expected: 0 },
+    { newValue: 100, minimalValue: 50, expected: 100 },
+    { newValue: -100, minimalValue: 50, expected: 50 },
+    { newValue: -100, minimalValue: -50, expected: -50 },
+  ];
+
+  minValidationTestCases.forEach((testCase) => {
+    it(`if new value is ${testCase.newValue} with mimimum of ${
+      testCase.minimalValue || "undefined"
+    } should return ${testCase.expected}`, () => {
+      expect(validateMin({ ...testCase })).toBe(testCase.expected);
+    });
+  });
+
+  arrayOfNonNumericValues.forEach((value) => {
+    it("if input is not a number should throw error", () => {
+      expect(() => {
+        validateMin({ newValue: value as number });
+      }).toThrow();
+    });
+  });
+
+  arrayOfNonNumericValues
+    .filter((value) => typeof value !== "undefined")
+    .forEach((value) => {
+      it("if minimum is not a number should throw error", () => {
+        expect(() => {
+          validateMin({ newValue: 0, minimalValue: value as number });
+        }).toThrow();
+      });
+    });
+});
+
+describe("Max Validation", () => {
+  const maxValidationTestCases = [
+    { newValue: 0, maximalValue: 100, expected: 0 },
+    { newValue: 100, maximalValue: 100, expected: 100 },
+    { newValue: -100, maximalValue: 100, expected: -100 },
+    { newValue: 100, maximalValue: 50, expected: 50 },
+  ];
+
+  maxValidationTestCases.forEach((testCase) => {
+    it(`if new value is ${testCase.newValue} with maximum of ${testCase.maximalValue} should return ${testCase.expected}`, () => {
+      expect(validateMax({ ...testCase })).toBe(testCase.expected);
+    });
+  });
+
+  arrayOfNonNumericValues.forEach((value) => {
+    it("if input is not a number should throw error", () => {
+      expect(() => {
+        validateMax({ newValue: value as number, maximalValue: 0 });
+      }).toThrow();
+    });
+  });
+
+  arrayOfNonNumericValues.forEach((value) => {
+    it("if maximum is not a number should throw error", () => {
+      expect(() => {
+        validateMax({ newValue: 0, maximalValue: value as number });
+      }).toThrow();
+    });
+  });
+});
+
+describe("MinMax Validation", () => {
+  const minMaxValidationTestCases = [
+    { newValue: 0, maximalValue: 100, expected: 0 },
+    { newValue: 100, maximalValue: 100, expected: 100 },
+    { newValue: -100, maximalValue: 100, expected: 0 },
+    { newValue: 100, maximalValue: 50, expected: 50 },
+    { newValue: 100, minimalValue: 50, maximalValue: 100, expected: 100 },
+    { newValue: -100, minimalValue: 50, maximalValue: 100, expected: 50 },
+    { newValue: -100, minimalValue: -100, maximalValue: 100, expected: -100 },
+  ];
+
+  minMaxValidationTestCases.forEach((testCase) => {
+    it(`if new value is ${testCase.newValue} with minimum of ${
+      testCase.minimalValue || "undefined"
+    } maximum of ${testCase.maximalValue} should return ${
+      testCase.expected
+    }`, () => {
+      expect(validateMinMax({ ...testCase })).toBe(testCase.expected);
+    });
+  });
+
+  arrayOfNonNumericValues.forEach((value) => {
+    it("if input is not a number should throw error", () => {
+      expect(() => {
+        validateMinMax({ newValue: value as number, maximalValue: 0 });
+      }).toThrow();
+    });
+  });
+
+  arrayOfNonNumericValues
+    .filter((value) => typeof value !== "undefined")
+    .forEach((value) => {
+      it("if minimum is not a number should throw error", () => {
+        expect(() => {
+          validateMinMax({
+            newValue: 0,
+            minimalValue: value as number,
+            maximalValue: 0,
+          });
+        }).toThrow();
+      });
+    });
+
+  arrayOfNonNumericValues.forEach((value) => {
+    it("if maximum is not a number should throw error", () => {
+      expect(() => {
+        validateMinMax({ newValue: 0, maximalValue: value as number });
+      }).toThrow();
+    });
   });
 });

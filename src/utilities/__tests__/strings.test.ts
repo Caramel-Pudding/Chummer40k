@@ -8,8 +8,7 @@ describe("Abbreviate", () => {
     expect(result).toBe(true);
   });
 
-  // VALID TEST DATA
-  const validTestCases = [
+  const testCases = [
     {
       input: "Death to The False Emperor",
       expected: "DTTFE",
@@ -36,7 +35,7 @@ describe("Abbreviate", () => {
     },
   ];
 
-  validTestCases.forEach((test) => {
+  testCases.forEach((test) => {
     it(`if input string is: ${test.input} should correctly abbreviate it to: ${test.expected}`, () => {
       const result = abbreviate(test.input);
       expect(result).toEqual(test.expected);
@@ -44,7 +43,7 @@ describe("Abbreviate", () => {
   });
 
   arrayOfNonStringValues.forEach((test) => {
-    it("if input is not string should throw error", () => {
+    it("if input is not a string should throw error", () => {
       expect(() => {
         abbreviate(test as any);
       }).toThrow();

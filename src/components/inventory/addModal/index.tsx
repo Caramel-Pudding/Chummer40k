@@ -40,11 +40,6 @@ export const AddModal: FC<AddModalProps> = memo(
     );
 
     const handleItemTypeChange = (itemType: ItemType) => {
-      setItemName("");
-      setItemSpecial("");
-      setItemWeight(0);
-      setItemAvalibility(Avalibility.Scarce);
-      setItemCraftsmanship(Craftsmanship.Common);
       setSelectedItemType(itemType);
     };
 

@@ -31,8 +31,7 @@ describe("convertStringEnumToArrayOfNames", () => {
     expect(result).toBe(true);
   });
 
-  // VALID TEST DATA
-  const validTestCases = [
+  const testCases = [
     {
       input: Primarch,
       expected: [
@@ -59,7 +58,7 @@ describe("convertStringEnumToArrayOfNames", () => {
     },
   ];
 
-  validTestCases.forEach((test) => {
+  testCases.forEach((test) => {
     it(`if input is string enum should return correct array of names`, () => {
       const result = convertStringEnumToArrayOfNames(test.input);
       expect(result).toEqual(test.expected);

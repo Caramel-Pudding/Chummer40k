@@ -3,8 +3,7 @@ import { arrayOfNonStringValues } from "@/tests/consts";
 import { getCharacteristicRepresentation } from "../helpers";
 
 describe("Characteristic Representation", () => {
-  // VALID TEST DATA
-  const validTestCases = [
+  const testCases = [
     {
       input: BCCharacteristic.WeaponSkill,
       expected: "WS",
@@ -19,7 +18,7 @@ describe("Characteristic Representation", () => {
     },
   ];
 
-  validTestCases.forEach((test) => {
+  testCases.forEach((test) => {
     it(`if input string is: ${test.input} should correctly translate it to: ${test.expected}`, () => {
       const result = getCharacteristicRepresentation(test.input);
       expect(result).toEqual(test.expected);
@@ -27,7 +26,7 @@ describe("Characteristic Representation", () => {
   });
 
   arrayOfNonStringValues.forEach((test) => {
-    it("if input is not string should throw error", () => {
+    it("if input is not a string should throw error", () => {
       expect(() => {
         getCharacteristicRepresentation(test as any);
       }).toThrow();

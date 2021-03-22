@@ -13,6 +13,7 @@ const Home: FC = () => {
     ItemType.Weapons
   );
   const [isAddModalOpen, setIsAddModalOpen] = useState<boolean>(false);
+  const [isPickModalOpen, setIsPickModalOpen] = useState<boolean>(false);
 
   return (
     <>
@@ -30,9 +31,14 @@ const Home: FC = () => {
             labelText="Items Type"
             options={convertStringEnumToArrayOfNames(ItemType)}
           />
-          <button type="button" onClick={() => setIsAddModalOpen(true)}>
-            Add
-          </button>
+          <div>
+            <button type="button" onClick={() => setIsPickModalOpen(true)}>
+              Pick
+            </button>
+            <button type="button" onClick={() => setIsAddModalOpen(true)}>
+              Add
+            </button>
+          </div>
         </div>
         <InventoryTable itemsType={selectedTable} />
       </main>
