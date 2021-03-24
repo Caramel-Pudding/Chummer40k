@@ -3,6 +3,8 @@
 import { NextApiHandler } from "next";
 import NextAuth from "next-auth";
 import Providers from "next-auth/providers";
+import Adapters from "next-auth/adapters";
+
 import prisma from "@/prisma/prisma";
 
 const options = {
@@ -12,7 +14,7 @@ const options = {
       clientSecret: process.env.GITHUB_SECRET!,
     }),
   ],
-  adapter: prisma,
+  adapter: Adapters.Prisma.Adapter({ prisma }),
   secret: process.env.SECRET,
 };
 

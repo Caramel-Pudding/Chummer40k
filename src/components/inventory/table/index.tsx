@@ -15,7 +15,9 @@ export const InventoryTable: FC<InventoryTableProps> = memo(({ itemsType }) => {
     <table className={classnames(styles.table)}>
       <tr className={classnames(styles.tableHeader)}>
         {tableHeaders[itemsType].map((header) => (
-          <th className={classnames(styles.tableCell)}>{header}</th>
+          <th key={header} className={classnames(styles.tableCell)}>
+            {header}
+          </th>
         ))}
       </tr>
     </table>

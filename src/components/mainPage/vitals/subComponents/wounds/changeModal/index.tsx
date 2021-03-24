@@ -58,6 +58,7 @@ export const ChangeModal: FC<ChangeModalProps> = memo(
           inputClasses={classnames("w-16", "ml-2")}
           labelClasses={classnames("flex", "justify-between", "text-sm")}
           labelText="Value:"
+          type="number"
           value={inputCurrent}
         />
         <span className={classnames("text-xs", "mt-1", "mb-4")}>
@@ -68,6 +69,7 @@ export const ChangeModal: FC<ChangeModalProps> = memo(
           inputClasses={classnames("w-16", "ml-2")}
           labelClasses={classnames("flex", "justify-between", "text-sm")}
           labelText="Value:"
+          type="number"
           value={inputTotal}
         />
         <span className={classnames("text-xs", "mt-1", "mb-4")}>

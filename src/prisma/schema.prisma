@@ -7,9 +7,8 @@ generator client {
   provider = "prisma-client-js"
 }
 
-
 model User {
-  id            Int       @default(autoincrement()) @id
+  id            Int       @id @default(autoincrement())
   name          String?
   email         String?   @unique
   emailVerified DateTime? @map(name: "email_verified")
@@ -21,7 +20,7 @@ model User {
 }
 
 model Account {
-  id                 Int       @default(autoincrement()) @id
+  id                 Int       @id @default(autoincrement())
   compoundId         String    @unique @map(name: "compound_id")
   userId             Int       @map(name: "user_id")
   providerType       String    @map(name: "provider_type")
@@ -33,15 +32,15 @@ model Account {
   createdAt          DateTime  @default(now()) @map(name: "created_at")
   updatedAt          DateTime  @default(now()) @map(name: "updated_at")
 
+
   @@index([providerAccountId], name: "providerAccountId")
   @@index([providerId], name: "providerId")
   @@index([userId], name: "userId")
-
   @@map(name: "accounts")
 }
 
 model Session {
-  id           Int      @default(autoincrement()) @id
+  id           Int      @id @default(autoincrement())
   userId       Int      @map(name: "user_id")
   expires      DateTime
   sessionToken String   @unique @map(name: "session_token")
@@ -50,4 +49,84 @@ model Session {
   updatedAt    DateTime @default(now()) @map(name: "updated_at")
 
   @@map(name: "sessions")
+}
+
+model Weapon {
+  id          Int           @id @default(autoincrement())
+  name        String
+  class       WeaponClass
+  damage      String
+  penetration Int
+  range       Int?
+  rateOfFire  String?
+  clip        Int?
+  reload      WeaponReload?
+  special     String?
+  weight      Int
+  avalibility Avalibility
+}
+
+model Armor {
+  id          Int           @id @default(autoincrement())
+  name        String
+  AP          Int
+  Locations   HitLocation[]
+  special     String?
+  weight      Int
+  avalibility Avalibility
+}
+
+model Item {
+  id          Int         @id @default(autoincrement())
+  name        String
+  special     String
+  weight      Int
+  avalibility Avalibility
+}
+
+enum WeaponClass {
+  MELEE
+  PISTOL
+  BASIC
+  HEAVY
+  THROWN
+}
+
+enum Avalibility {
+  UBIQUITOUS
+  ABUNDANT
+  PLENTIFUL
+  COMMON
+  AVERAGE
+  SCARCE
+  RARE
+  VR
+  ER
+  NU
+  UNIQUE
+}
+
+enum Craftsmanship {
+  POOR
+  COMMON
+  GOOD
+  BEST
+}
+
+enum WeaponReload {
+  FREE
+  HALF
+  FULL
+  TWOFULL
+  THREEFULL
+  FOURFULL
+}
+
+enum HitLocation {
+  HEAD
+  LARM
+  TORSO
+  RARM
+  LLEG
+  RLEG
 }

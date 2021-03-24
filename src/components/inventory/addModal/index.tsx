@@ -7,13 +7,14 @@ import React, {
   ReactNode,
   ReactText,
 } from "react";
+import axios from "axios";
+import { useMutation } from "react-query";
+import { Prisma, Avalibility } from "@prisma/client";
+
 import classnames from "classnames";
 
-import {
-  ItemType,
-  Avalibility,
-  Craftsmanship,
-} from "@/redux/features/inventory/consts";
+import { ItemType } from "@/redux/features/inventory/consts";
+
 import { BasicSelct } from "@/components/shared/BasicSelct";
 import { BasicInput } from "@/components/shared/BasicInput";
 import { convertStringEnumToArrayOfNames } from "@/utilities/arrays";
@@ -26,6 +27,10 @@ interface AddModalProps {
 
 export const AddModal: FC<AddModalProps> = memo(
   ({ isOpen, setIsModalOpen }) => {
+    const createItem = useMutation((newItem: Prisma.ItemCreateInput) =>
+      axios.post("/api/inventory/items/create", newItem)
+    );
+
     const [selectedItemType, setSelectedItemType] = useState<ItemType>(
       ItemType.Weapons
     );
@@ -33,14 +38,20 @@ export const AddModal: FC<AddModalProps> = memo(
     const [itemSpecial, setItemSpecial] = useState("");
     const [itemWeight, setItemWeight] = useState<ReactText>(0);
     const [itemAvalibility, setItemAvalibility] = useState<Avalibility>(
-      Avalibility.Scarce
-    );
-    const [itemCraftsmanship, setItemCraftsmanship] = useState<Craftsmanship>(
-      Craftsmanship.Common
+      Avalibility.SCARCE
     );
 
     const handleItemTypeChange = (itemType: ItemType) => {
       setSelectedItemType(itemType);
+    };
+
+    const handleAddClick = () => {
+      createItem.mutate({
+        name: itemName,
+        special: itemSpecial,
+        weight: Number(itemWeight),
+        avalibility: itemAvalibility,
+      });
     };
 
     const renderAddItemFields = (): ReactNode => {
@@ -83,16 +94,6 @@ export const AddModal: FC<AddModalProps> = memo(
                 options={convertStringEnumToArrayOfNames(Avalibility)}
                 selectClasses={classnames("ml-4")}
               />
-              <BasicSelct
-                chosenOption={itemCraftsmanship}
-                handler={(select) =>
-                  setItemCraftsmanship(select as Craftsmanship)
-                }
-                labelClasses={classnames("my-2")}
-                labelText="Craftsmanship"
-                options={convertStringEnumToArrayOfNames(Craftsmanship)}
-                selectClasses={classnames("ml-4")}
-              />
             </>
           );
       }
@@ -109,7 +110,11 @@ export const AddModal: FC<AddModalProps> = memo(
         />
         {renderAddItemFields()}
         <div className={classnames("flex", "justify-center")}>
-          <button className={classnames("text-sm")} type="button">
+          <button
+            className={classnames("text-sm")}
+            type="button"
+            onClick={handleAddClick}
+          >
             Add
           </button>
         </div>

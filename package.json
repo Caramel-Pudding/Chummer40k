@@ -37,6 +37,7 @@
     "@types/react-redux": "^7.1.16",
     "@welldone-software/why-did-you-render": "^6.1.0",
     "autoprefixer": "^10.2.4",
+    "axios": "^0.21.1",
     "classnames": "^2.2.6",
     "next": "10.0.7",
     "next-auth": "^3.11.2",
@@ -48,6 +49,7 @@
     "react-dom": "17.0.1",
     "react-hook-form": "^6.15.4",
     "react-icons": "^4.2.0",
+    "react-query": "^3.13.0",
     "react-redux": "^7.2.2",
     "tailwindcss": "^2.0.3"
   },

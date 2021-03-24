@@ -1,7 +1,5 @@
 import { PrismaClient } from "@prisma/client";
 
-import Adapters from "next-auth/adapters";
-
 const prismaClientPropertyName = `__prevent-name-collision__prisma`;
 type GlobalThisWithPrismaClient = typeof globalThis & {
   [prismaClientPropertyName]: PrismaClient;
@@ -20,4 +18,4 @@ const getPrismaClient = () => {
 
 const prisma = getPrismaClient();
 
-export default Adapters.Prisma.Adapter({ prisma });
+export default prisma;

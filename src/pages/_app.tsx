@@ -3,6 +3,7 @@ import React, { FC, memo } from "react";
 import { AppProps, NextWebVitalsMetric } from "next/app";
 import { Provider as ReduxProvider } from "react-redux";
 import { Provider as AuthProvider } from "next-auth/client";
+import { QueryClient, QueryClientProvider } from "react-query";
 
 import { Layout } from "@/components/layout";
 import { store } from "@/redux/store";
@@ -10,17 +11,20 @@ import { store } from "@/redux/store";
 import "@/styles/globals.css";
 import "@/styles/tailwind.css";
 
+const queryClient = new QueryClient();
+
 const MyApp: FC<AppProps> = ({ Component, pageProps }) => {
-  // eslint-disable-next-line react/jsx-props-no-spreading
   return (
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
-    <AuthProvider session={pageProps.session}>
-      <ReduxProvider store={store}>
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
-      </ReduxProvider>
-    </AuthProvider>
+    <QueryClientProvider client={queryClient}>
+      {/* eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access */}
+      <AuthProvider session={pageProps.session}>
+        <ReduxProvider store={store}>
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </ReduxProvider>
+      </AuthProvider>
+    </QueryClientProvider>
   );
 };
 
