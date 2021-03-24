@@ -25,6 +25,7 @@
     "paths": {
       "@/components/*": ["components/*"],
       "@/hooks/*": ["hooks/*"],
+      "@/network/*": ["network/*"],
       "@/pages/*": ["pages/*"],
       "@/prisma/*": ["prisma/*"],
       "@/redux/*": ["redux/*"],

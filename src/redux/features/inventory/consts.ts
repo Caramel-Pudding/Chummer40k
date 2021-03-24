@@ -1,5 +1,10 @@
 export enum ItemType {
-  Weapons = "Weapons",
-  Armor = "Armor",
-  Other = "Other",
+  Weapons = "weapons",
+  Armor = "armor",
+  Items = "items",
+}
+
+export enum ItemOwner {
+  Character = "Character",
+  NoOne = "NoOne",
 }

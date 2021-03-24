@@ -3,17 +3,19 @@ import Head from "next/head";
 import classnames from "classnames";
 
 import { BasicSelct } from "@/components/shared/BasicSelct";
-import { ItemType } from "@/redux/features/inventory/consts";
+import { ItemType, ItemOwner } from "@/redux/features/inventory/consts";
 import { InventoryTable } from "@/components/inventory/table";
 import { convertStringEnumToArrayOfNames } from "@/utilities/arrays";
 import { AddModal } from "@/components/inventory/addModal";
 
 const Home: FC = () => {
-  const [selectedTable, setSelectedTable] = useState<ItemType>(
+  const [selectedItemType, setSelectedItemType] = useState<ItemType>(
     ItemType.Weapons
   );
+  const [selectedItemOwner, setSelectedItemOwner] = useState<ItemOwner>(
+    ItemOwner.Character
+  );
   const [isAddModalOpen, setIsAddModalOpen] = useState<boolean>(false);
-  const [isPickModalOpen, setIsPickModalOpen] = useState<boolean>(false);
 
   return (
     <>
@@ -25,22 +27,32 @@ const Home: FC = () => {
         <div
           className={classnames("flex", "flex-row", "justify-between", "mb-2")}
         >
-          <BasicSelct
-            chosenOption={selectedTable}
-            handler={(select) => setSelectedTable(select as ItemType)}
-            labelText="Items Type"
-            options={convertStringEnumToArrayOfNames(ItemType)}
-          />
-          <div>
-            <button type="button" onClick={() => setIsPickModalOpen(true)}>
-              Pick
-            </button>
-            <button type="button" onClick={() => setIsAddModalOpen(true)}>
-              Add
-            </button>
+          <div className={classnames("flex", "flex-row")}>
+            <BasicSelct
+              chosenOption={selectedItemType}
+              handler={(select) => setSelectedItemType(select as ItemType)}
+              labelText="Items Type"
+              options={convertStringEnumToArrayOfNames(ItemType)}
+            />
+            <BasicSelct
+              chosenOption={selectedItemOwner}
+              handler={(select) => setSelectedItemOwner(select as ItemOwner)}
+              labelText="Items Owner"
+              options={convertStringEnumToArrayOfNames(ItemOwner)}
+            />
           </div>
+          {selectedItemOwner === ItemOwner.NoOne && (
+            <div>
+              <button type="button" onClick={() => setIsAddModalOpen(true)}>
+                Add
+              </button>
+            </div>
+          )}
         </div>
-        <InventoryTable itemsType={selectedTable} />
+        <InventoryTable
+          itemOwner={selectedItemOwner}
+          itemsType={selectedItemType}
+        />
       </main>
     </>
   );

@@ -8,13 +8,17 @@ import React, {
   ReactText,
 } from "react";
 import axios from "axios";
-import { useMutation } from "react-query";
+import { useMutation, useQueryClient } from "react-query";
 import { Prisma, Avalibility } from "@prisma/client";
-
 import classnames from "classnames";
 
+import {
+  buildApiRoute,
+  buildInventoryRoute,
+  ApiActions,
+} from "@/network/routes";
 import { ItemType } from "@/redux/features/inventory/consts";
-
+import { inventory } from "@/network/react-query-keys";
 import { BasicSelct } from "@/components/shared/BasicSelct";
 import { BasicInput } from "@/components/shared/BasicInput";
 import { convertStringEnumToArrayOfNames } from "@/utilities/arrays";
@@ -27,13 +31,28 @@ interface AddModalProps {
 
 export const AddModal: FC<AddModalProps> = memo(
   ({ isOpen, setIsModalOpen }) => {
-    const createItem = useMutation((newItem: Prisma.ItemCreateInput) =>
-      axios.post("/api/inventory/items/create", newItem)
-    );
+    const queryClient = useQueryClient();
 
     const [selectedItemType, setSelectedItemType] = useState<ItemType>(
       ItemType.Weapons
     );
+
+    const createItem = useMutation(
+      (newItem: Prisma.ItemCreateInput) =>
+        axios.post(
+          buildApiRoute([
+            buildInventoryRoute(selectedItemType),
+            ApiActions.Create,
+          ]),
+          newItem
+        ),
+      {
+        onSuccess: async () => {
+          await queryClient.invalidateQueries(inventory);
+        },
+      }
+    );
+
     const [itemName, setItemName] = useState("");
     const [itemSpecial, setItemSpecial] = useState("");
     const [itemWeight, setItemWeight] = useState<ReactText>(0);
@@ -60,7 +79,7 @@ export const AddModal: FC<AddModalProps> = memo(
           return <div>Weapon</div>;
         case ItemType.Armor:
           return <div>Armor</div>;
-        case ItemType.Other:
+        case ItemType.Items:
         default:
           return (
             <>
