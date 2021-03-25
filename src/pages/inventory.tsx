@@ -3,18 +3,17 @@ import Head from "next/head";
 import classnames from "classnames";
 
 import { BasicSelct } from "@/components/shared/BasicSelct";
-import { ItemType, ItemOwner } from "@/redux/features/inventory/consts";
+import { ItemType } from "@/redux/features/inventory/consts";
 import { InventoryTable } from "@/components/inventory/table";
 import { convertStringEnumToArrayOfNames } from "@/utilities/arrays";
 import { AddModal } from "@/components/inventory/addModal";
+import { BasicCheckbox } from "@/components/shared/BasicCheckbox";
 
 const Home: FC = () => {
   const [selectedItemType, setSelectedItemType] = useState<ItemType>(
     ItemType.Weapons
   );
-  const [selectedItemOwner, setSelectedItemOwner] = useState<ItemOwner>(
-    ItemOwner.Character
-  );
+  const [showOwnItems, setShowOwnItems] = useState<boolean>(true);
   const [isAddModalOpen, setIsAddModalOpen] = useState<boolean>(false);
 
   return (
@@ -34,14 +33,14 @@ const Home: FC = () => {
               labelText="Items Type"
               options={convertStringEnumToArrayOfNames(ItemType)}
             />
-            <BasicSelct
-              chosenOption={selectedItemOwner}
-              handler={(select) => setSelectedItemOwner(select as ItemOwner)}
-              labelText="Items Owner"
-              options={convertStringEnumToArrayOfNames(ItemOwner)}
+            <BasicCheckbox
+              checked={showOwnItems}
+              handler={setShowOwnItems}
+              labelClasses={classnames("ml-4")}
+              labelText="Wanna see your stuff?"
             />
           </div>
-          {selectedItemOwner === ItemOwner.NoOne && (
+          {!showOwnItems && (
             <div>
               <button type="button" onClick={() => setIsAddModalOpen(true)}>
                 Add
@@ -50,8 +49,8 @@ const Home: FC = () => {
           )}
         </div>
         <InventoryTable
-          itemOwner={selectedItemOwner}
           itemsType={selectedItemType}
+          showOwnItems={showOwnItems}
         />
       </main>
     </>

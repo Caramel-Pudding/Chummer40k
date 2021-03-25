@@ -54,8 +54,9 @@ model Session {
 model Weapon {
   id          Int           @id @default(autoincrement())
   name        String
-  class       WeaponClass
+  weaponClass WeaponClass
   damage      String
+  damageType  DamageType
   penetration Int
   range       Int?
   rateOfFire  String?
@@ -70,7 +71,7 @@ model Armor {
   id          Int           @id @default(autoincrement())
   name        String
   AP          Int
-  Locations   HitLocation[]
+  locations   HitLocation[]
   special     String?
   weight      Int
   avalibility Avalibility
@@ -129,4 +130,11 @@ enum HitLocation {
   RARM
   LLEG
   RLEG
+}
+
+enum DamageType {
+  IMPACT
+  RENDING
+  ENERGY
+  EXPLOSIVE
 }

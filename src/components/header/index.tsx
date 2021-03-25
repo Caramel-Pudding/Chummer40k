@@ -46,7 +46,7 @@ export const Header: FC = memo(() => {
         <Link href="/">
           <a>Menu</a>
         </Link>
-        <Link href="inventory">
+        <Link href="/inventory">
           <a>Inventory</a>
         </Link>
       </div>

@@ -4,7 +4,7 @@ import classnames from "classnames";
 interface BasicInputProps {
   readonly labelText: string;
   readonly value: ReactText;
-  readonly handler: (event: string) => void;
+  readonly handler: (input: string) => void;
   readonly type?: "text" | "number";
   readonly labelClasses?: string;
   readonly inputClasses?: string;
@@ -16,10 +16,10 @@ export const BasicInput: FC<BasicInputProps> = memo(
     value,
     handler,
     type = "text",
-    labelClasses: containerClasses = "",
+    labelClasses = "",
     inputClasses = "",
   }) => {
-    const selectHandler = (event: FormEvent<HTMLInputElement>) => {
+    const inputHandler = (event: FormEvent<HTMLInputElement>) => {
       handler(event.currentTarget.value);
     };
 
@@ -29,7 +29,7 @@ export const BasicInput: FC<BasicInputProps> = memo(
           "flex",
           "flex-row",
           "justify-between",
-          containerClasses
+          labelClasses
         )}
       >
         {labelText}
@@ -37,7 +37,7 @@ export const BasicInput: FC<BasicInputProps> = memo(
           className={classnames(inputClasses)}
           type={type}
           value={value}
-          onChange={selectHandler}
+          onChange={inputHandler}
         />
       </label>
     );

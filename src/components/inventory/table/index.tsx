@@ -12,38 +12,41 @@ import {
   buildInventoryRoute,
   ApiActions,
 } from "@/network/routes";
-import { ItemType, ItemOwner } from "@/redux/features/inventory/consts";
+import { ItemType } from "@/redux/features/inventory/consts";
+import { TableRow } from "./subComponents/tableRow";
 import { tableHeaders } from "./consts";
 
 import styles from "./styles.module.css";
 
 interface InventoryTableProps {
   readonly itemsType: ItemType;
-  readonly itemOwner: ItemOwner;
+  readonly showOwnItems: boolean;
 }
 
 export const InventoryTable: FC<InventoryTableProps> = memo(
-  ({ itemsType, itemOwner }) => {
-    const { isLoading, error, data } = useQuery<Item[]>(inventory, () =>
-      axios
-        .get<Item[]>(
-          buildApiRoute([buildInventoryRoute(itemsType), ApiActions.GetAll])
-        )
-        .then((response) => response.data)
+  ({ itemsType, showOwnItems }) => {
+    const { isLoading, error, data } = useQuery<Item[]>(
+      [inventory, itemsType, showOwnItems],
+      () =>
+        axios
+          .get<Item[]>(
+            buildApiRoute([buildInventoryRoute(itemsType), ApiActions.GetAll])
+          )
+          .then((response) => response.data),
+      { enabled: !showOwnItems }
     );
 
     if (isLoading) {
       return <Loader />;
     }
 
-    if (error || !data) {
+    if (error) {
       return <Error />;
     }
 
-    const headers =
-      itemOwner === ItemOwner.Character
-        ? tableHeaders[itemsType]
-        : tableHeaders[itemsType].filter((header) => header !== "Craft.");
+    const headers = showOwnItems
+      ? tableHeaders[itemsType]
+      : tableHeaders[itemsType].filter((header) => header !== "Craft.");
 
     return (
       <table className={classnames(styles.table)}>
@@ -57,19 +60,12 @@ export const InventoryTable: FC<InventoryTableProps> = memo(
           </tr>
         </thead>
         <tbody>
-          {data.map((item: Item) => (
-            <tr key={item.id} className={classnames(styles.tableCell)}>
-              {Object.entries(item)
-                .filter((entry) => entry[0] !== "id")
-                .map((property) => (
-                  <td
-                    key={property[0] + String(item.id)}
-                    className={classnames(styles.tableCell)}
-                  >
-                    {property[1]}
-                  </td>
-                ))}
-            </tr>
+          {(data || []).map((item: Item) => (
+            <TableRow
+              key={item.name + String(item.id)}
+              item={item}
+              itemType={itemsType}
+            />
           ))}
         </tbody>
       </table>

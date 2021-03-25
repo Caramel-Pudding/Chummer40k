@@ -1,0 +1,7 @@
+.label {
+  @apply my-2 text-white;
+}
+
+.input {
+  @apply ml-4 text-black;
+}
