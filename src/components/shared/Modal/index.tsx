@@ -1,6 +1,8 @@
-import React, { FC, memo, Dispatch, SetStateAction } from "react";
+import React, { FC, memo, Dispatch, SetStateAction, useRef } from "react";
 import { MdClose } from "react-icons/md";
 import classnames from "classnames";
+
+import { useCloseOnOutsideClick } from "@/hooks/close-on-outside-click";
 
 interface ModalProps {
   // TODO: This doesn't seem to be a good design choise
@@ -11,9 +13,13 @@ interface ModalProps {
 
 export const Modal: FC<ModalProps> = memo(
   ({ children, isOpen, outerModalHandler, classNames = "" }) => {
+    const modal = useRef<HTMLDivElement>(null);
+    useCloseOnOutsideClick(outerModalHandler, isOpen, modal);
+
     if (isOpen) {
       return (
         <div
+          ref={modal}
           className={classnames(
             "flex",
             "flex-col",
