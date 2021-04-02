@@ -21,7 +21,7 @@ import {
 
 import { BCCharacteristic } from "@/redux/features/characteristics/consts";
 
-import { Session } from "next-auth/client";
+import { Session } from "next-auth";
 
 import { NextRouter } from "next/router";
 
@@ -60,6 +60,7 @@ export const mockRouter: NextRouter = {
   query: {},
   isLocaleDomain: true,
   isReady: true,
+  isPreview: false,
   push: jest.fn(),
   replace: jest.fn(),
   reload: jest.fn(),

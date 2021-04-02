@@ -12,6 +12,9 @@
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
     "esModuleInterop": true,
+    // TODO: Enable after postCSS d.ts generator
+    //"noPropertyAccessFromIndexSignature": true,
+    //"noUncheckedIndexedAccess": true,
     "module": "esnext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
