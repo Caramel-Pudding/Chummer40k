@@ -68,6 +68,7 @@ export const AddWeaponFields: FC = memo(() => {
       damage,
       damageType,
       penetration: Number(penetration),
+      rateOfFire: RoF,
       range: weaponClass === WeaponClass.MELEE ? null : Number(range),
       clip: weaponClass === WeaponClass.MELEE ? null : Number(clip),
       reload: weaponClass === WeaponClass.MELEE ? null : reload,

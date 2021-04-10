@@ -2,7 +2,6 @@ import React, { FC, memo } from "react";
 import classnames from "classnames";
 import axios from "axios";
 import { useQuery } from "react-query";
-import { Item } from "@prisma/client";
 
 import { Error } from "@/components/Error";
 import { Loader } from "@/components/Loader";
@@ -13,6 +12,7 @@ import {
   ApiActions,
 } from "@/network/routes";
 import { ItemType } from "@/redux/features/inventory/consts";
+import type { InventoryItem } from "@/redux/features/inventory/types";
 import { TableRow } from "./subComponents/tableRow";
 import { tableHeaders } from "./consts";
 
@@ -25,11 +25,11 @@ interface InventoryTableProps {
 
 export const InventoryTable: FC<InventoryTableProps> = memo(
   ({ itemsType, showOwnItems }) => {
-    const { isLoading, error, data } = useQuery<Item[]>(
+    const { isLoading, error, data } = useQuery<InventoryItem[]>(
       [inventory, itemsType, showOwnItems],
       () =>
         axios
-          .get<Item[]>(
+          .get<InventoryItem[]>(
             buildApiRoute([buildInventoryRoute(itemsType), ApiActions.GetAll])
           )
           .then((response) => response.data),
@@ -60,7 +60,7 @@ export const InventoryTable: FC<InventoryTableProps> = memo(
           </tr>
         </thead>
         <tbody>
-          {(data || []).map((item: Item) => (
+          {(data || []).map((item: InventoryItem) => (
             <TableRow
               key={item.name + String(item.id)}
               item={item}

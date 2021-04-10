@@ -63,7 +63,7 @@ model Weapon {
   clip        Int?
   reload      WeaponReload?
   special     String?
-  weight      Int
+  weight      Float
   avalibility Avalibility
 }
 
@@ -73,7 +73,7 @@ model Armor {
   AP          Int
   locations   HitLocation[]
   special     String?
-  weight      Int
+  weight      Float
   avalibility Avalibility
 }
 
@@ -81,7 +81,7 @@ model Item {
   id          Int         @id @default(autoincrement())
   name        String
   special     String
-  weight      Int
+  weight      Float
   avalibility Avalibility
 }
 

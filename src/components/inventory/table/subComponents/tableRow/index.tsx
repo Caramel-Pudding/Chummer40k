@@ -1,15 +1,17 @@
 import React, { FC, memo, useState } from "react";
-import { Item } from "@prisma/client";
+import type { Item } from "@prisma/client";
 import classnames from "classnames";
 
 import { ItemType } from "@/redux/features/inventory/consts";
+import type { InventoryItem } from "@/redux/features/inventory/types";
 import { ItemTemplateModal } from "../../../itemTemplateModal";
+import { CellSelector } from "../cellSelector";
 
 import styles from "../../styles.module.css";
 
 interface TableRowProps {
   readonly itemType: ItemType;
-  readonly item: Item;
+  readonly item: InventoryItem;
 }
 
 export const TableRow: FC<TableRowProps> = memo(({ itemType, item }) => {
@@ -27,16 +29,13 @@ export const TableRow: FC<TableRowProps> = memo(({ itemType, item }) => {
         className={classnames(styles.tableCell)}
         onClick={() => setIsModalOpen(true)}
       >
-        {Object.entries(item)
-          .filter((entry) => entry[0] !== "id")
-          .map((property) => (
-            <td
-              key={property[0] + String(item.id)}
-              className={classnames(styles.tableCell)}
-            >
-              {property[1]}
-            </td>
-          ))}
+        {Object.entries(item).map((property) => (
+          <CellSelector
+            key={property[0] + String(item.id)}
+            cellType={property[0] as keyof Item}
+            cellValue={property[1]}
+          />
+        ))}
       </tr>
     </>
   );

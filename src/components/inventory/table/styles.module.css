@@ -7,5 +7,5 @@
 }
 
 .tableCell {
-  @apply border border-black text-xs cursor-pointer;
+  @apply border border-black text-xs cursor-pointer text-center;
 }

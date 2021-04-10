@@ -21,7 +21,7 @@ export const AddModal: FC<AddModalProps> = memo(
       ItemType.Weapons
     );
 
-    const renderPrperFields = () => {
+    const renderProperFields = () => {
       switch (selectedItemType) {
         case ItemType.Weapons:
           return <AddWeaponFields />;
@@ -43,7 +43,7 @@ export const AddModal: FC<AddModalProps> = memo(
           options={convertStringEnumToArrayOfNames(ItemType)}
           selectClasses={classnames("ml-4", "text-black")}
         />
-        {renderPrperFields()}
+        {renderProperFields()}
       </Modal>
     );
   }

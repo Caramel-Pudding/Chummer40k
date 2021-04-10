@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import prisma from "@/prisma/prisma";
-import { Prisma, Armor } from "@prisma/client";
+import { Armor } from "@prisma/client";
 
 // POST /api/inventory/armor/create
 // Required fields in body: name, special, weight, avalibility, AP, locations
@@ -10,14 +10,7 @@ export default async function handle(
   res: NextApiResponse<Armor>
 ): Promise<void> {
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-  const {
-    name,
-    special,
-    weight,
-    avalibility,
-    AP,
-    locations,
-  }: Prisma.ArmorCreateInput = req.body;
+  const { name, special, weight, avalibility, AP, locations }: Armor = req.body;
 
   const result = await prisma.armor.create({
     data: {

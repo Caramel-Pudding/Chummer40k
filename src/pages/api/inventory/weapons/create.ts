@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import prisma from "@/prisma/prisma";
-import { Prisma, Weapon } from "@prisma/client";
+import { Weapon } from "@prisma/client";
 
 // POST /api/inventory/weapons/create
 // Required fields in body: name, special, weight, avalibility, weaponClass, damage, damageType, penetration, range, rateOfFire, reload
@@ -13,6 +13,7 @@ export default async function handle(
   const {
     name,
     special,
+    clip,
     weight,
     avalibility,
     weaponClass,
@@ -22,12 +23,13 @@ export default async function handle(
     range,
     rateOfFire,
     reload,
-  }: Prisma.WeaponCreateInput = req.body;
+  }: Weapon = req.body;
 
   const result = await prisma.weapon.create({
     data: {
       name,
       special,
+      clip,
       weight,
       avalibility,
       weaponClass,

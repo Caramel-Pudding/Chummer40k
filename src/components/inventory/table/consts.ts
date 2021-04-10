@@ -4,10 +4,10 @@ export const tableHeaders = {
   [ItemType.Weapons]: [
     "Name",
     "Class",
-    "Range",
-    "RoF",
     "Dam.",
     "Pen.",
+    "Range",
+    "RoF",
     "Clip",
     "Rld.",
     "Spc.",
@@ -15,6 +15,6 @@ export const tableHeaders = {
     "Av.",
     "Craft.",
   ],
-  [ItemType.Armor]: ["Name", "Loc.", "AP", "Spc.", "Wt.", "Av.", "Craft."],
+  [ItemType.Armor]: ["Name", "AP", "Loc.", "Spc.", "Wt.", "Av.", "Craft."],
   [ItemType.Items]: ["Name", "Spc.", "Wt.", "Av.", "Craft."],
 };
