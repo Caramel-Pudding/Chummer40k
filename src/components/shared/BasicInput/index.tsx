@@ -1,7 +1,7 @@
 import React, { FC, memo, FormEvent, ReactText } from "react";
 import classnames from "classnames";
 
-interface BasicInputProps {
+export interface BasicInputProps {
   readonly labelText: string;
   readonly value: ReactText;
   readonly handler: (input: string) => void;

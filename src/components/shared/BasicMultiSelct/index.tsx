@@ -1,7 +1,7 @@
 import React, { FC, memo, FormEvent } from "react";
 import classnames from "classnames";
 
-interface BasicMultiSelctProps {
+export interface BasicMultiSelctProps {
   readonly labelText: string;
   readonly options: string[];
   readonly chosenOptions: string[];

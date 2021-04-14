@@ -1,7 +1,7 @@
 import React, { FC, memo, FormEvent } from "react";
 import classnames from "classnames";
 
-interface BasicCheckboxProps {
+export interface BasicCheckboxProps {
   readonly labelText: string;
   readonly checked: boolean;
   readonly handler: (toggle: boolean) => void;

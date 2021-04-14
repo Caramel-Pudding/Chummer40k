@@ -1,7 +1,7 @@
 import React, { FC, memo } from "react";
 import classnames from "classnames";
 
-interface BasicShowBoxProps {
+export interface BasicShowBoxProps {
   readonly text: string;
   readonly handleClick?: () => void;
   readonly boxClasses?: string;
