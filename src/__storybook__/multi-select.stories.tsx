@@ -9,9 +9,6 @@ import {
 export default {
   title: "Basic/Multi Select",
   component: BasicMultiSelct,
-  argTypes: {
-    backgroundColor: { control: "color" },
-  },
 } as Meta;
 
 const Template: Story<BasicMultiSelctProps> = (args) => (

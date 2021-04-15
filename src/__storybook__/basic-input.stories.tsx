@@ -6,9 +6,6 @@ import { BasicInput, BasicInputProps } from "../components/shared/BasicInput";
 export default {
   title: "Basic/Input",
   component: BasicInput,
-  argTypes: {
-    backgroundColor: { control: "color" },
-  },
 } as Meta;
 
 const Template: Story<BasicInputProps> = (args) => <BasicInput {...args} />;

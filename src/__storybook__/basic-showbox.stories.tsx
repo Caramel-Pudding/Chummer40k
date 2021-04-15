@@ -9,9 +9,6 @@ import {
 export default {
   title: "Basic/Show Box",
   component: BasicShowBox,
-  argTypes: {
-    backgroundColor: { control: "color" },
-  },
 } as Meta;
 
 const Template: Story<BasicShowBoxProps> = (args) => <BasicShowBox {...args} />;

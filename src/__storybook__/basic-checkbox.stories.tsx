@@ -9,9 +9,6 @@ import {
 export default {
   title: "Basic/Checkbox",
   component: BasicCheckbox,
-  argTypes: {
-    backgroundColor: { control: "color" },
-  },
 } as Meta;
 
 const Template: Story<BasicCheckboxProps> = (args) => (

@@ -6,9 +6,6 @@ import { BasicSelct, BasicSelectProps } from "../components/shared/BasicSelct";
 export default {
   title: "Basic/Select",
   component: BasicSelct,
-  argTypes: {
-    backgroundColor: { control: "color" },
-  },
 } as Meta;
 
 const Template: Story<BasicSelectProps> = (args) => <BasicSelct {...args} />;
