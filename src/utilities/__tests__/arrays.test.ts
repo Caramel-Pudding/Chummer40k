@@ -2,6 +2,7 @@ import { isString } from "../type-guards";
 import { convertStringEnumToArrayOfNames } from "../arrays";
 
 describe("convertStringEnumToArrayOfNames", () => {
+  // * #TEST: ARRANGE
   enum Primarch {
     LionElJonson = "Lion El'Jonson",
     Classified = "Classified",
@@ -25,12 +26,15 @@ describe("convertStringEnumToArrayOfNames", () => {
   }
 
   it("if input is string enum should return array of string", () => {
+    // * #TEST: ACT
     const result = convertStringEnumToArrayOfNames(Primarch).every((name) =>
       isString(name)
     );
+    // * #TEST: ASSERT
     expect(result).toBe(true);
   });
 
+  // * #TEST: ARRANGE
   const testCases = [
     {
       input: Primarch,
@@ -60,7 +64,9 @@ describe("convertStringEnumToArrayOfNames", () => {
 
   testCases.forEach((test) => {
     it(`if input is string enum should return correct array of names`, () => {
+      // * #TEST: ACT
       const result = convertStringEnumToArrayOfNames(test.input);
+      // * #TEST: ASSERT
       expect(result).toEqual(test.expected);
     });
   });
