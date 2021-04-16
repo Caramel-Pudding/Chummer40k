@@ -21,7 +21,7 @@ export const BasicShowBox: FC<BasicShowBoxProps> = memo(
         type="button"
         onClick={handleClick}
       >
-        <span>{text}</span>
+        {text}
       </button>
     );
   }

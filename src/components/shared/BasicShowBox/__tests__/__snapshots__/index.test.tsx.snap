@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<BasicShowBox /> Basic snapshot test 1`] = `
+<div>
+  <button
+    class="p-1 border border-black cursor-pointer"
+    type="button"
+  >
+    TEST
+  </button>
+</div>
+`;

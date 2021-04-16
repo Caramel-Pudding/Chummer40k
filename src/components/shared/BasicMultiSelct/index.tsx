@@ -14,7 +14,7 @@ export interface BasicMultiSelctProps {
 export const BasicMultiSelct: FC<BasicMultiSelctProps> = memo(
   ({
     labelText,
-    options,
+    options = [],
     chosenOptions,
     handler,
     labelClasses: containerClasses = "",

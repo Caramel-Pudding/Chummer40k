@@ -1,6 +1,6 @@
 import { render } from "@/tests/test-utils";
 
-import { Layout } from "../../components/layout";
+import { Layout } from "@/components/layout";
 import Home from "..";
 
 describe("The Home Page Component", () => {

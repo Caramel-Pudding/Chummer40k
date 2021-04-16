@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<BasicSelect /> Basic snapshot test 1`] = `
+<div>
+  <label
+    class="flex flex-row justify-between"
+  >
+    TEST
+    <select
+      class=""
+    >
+      <option
+        class=""
+        value="TEST1"
+      >
+        TEST1
+      </option>
+      <option
+        class=""
+        value="TEST2"
+      >
+        TEST2
+      </option>
+    </select>
+  </label>
+</div>
+`;
