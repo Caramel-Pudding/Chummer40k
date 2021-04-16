@@ -14,3 +14,48 @@ exports[`<BasicInput/> Basic snapshot test 1`] = `
   </label>
 </div>
 `;
+
+exports[`<BasicInput/> should render proper label 1`] = `
+<div>
+  <label
+    class="flex flex-row justify-between"
+  >
+    TEST
+    <input
+      class=""
+      type="text"
+      value=""
+    />
+  </label>
+</div>
+`;
+
+exports[`<BasicInput/> should render undefined label as '' 1`] = `
+<div>
+  <label
+    class="flex flex-row justify-between"
+  >
+    TEST
+    <input
+      class=""
+      type="text"
+      value=""
+    />
+  </label>
+</div>
+`;
+
+exports[`<BasicInput/> should render undefined label as '' 2`] = `
+<div>
+  <label
+    class="flex flex-row justify-between"
+  >
+    TEST
+    <input
+      class=""
+      type="text"
+      value=""
+    />
+  </label>
+</div>
+`;

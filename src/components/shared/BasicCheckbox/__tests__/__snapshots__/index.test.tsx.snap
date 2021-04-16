@@ -8,6 +8,114 @@ exports[`<BasicCheckbox/> Basic snapshot test 1`] = `
     TEST
     <input
       class="ml-2"
+      data-testid="BASIC-CHECKBOX-TEST-ID"
+      type="checkbox"
+    />
+  </label>
+</div>
+`;
+
+exports[`<BasicCheckbox/> should render proper label 1`] = `
+<div>
+  <label
+    class=""
+  >
+    TEST
+    <input
+      class="ml-2"
+      data-testid="BASIC-CHECKBOX-TEST-ID"
+      type="checkbox"
+    />
+  </label>
+</div>
+`;
+
+exports[`<BasicCheckbox/> should render undefined label as '' 1`] = `
+<div>
+  <label
+    class=""
+  >
+    TEST
+    <input
+      class="ml-2"
+      data-testid="BASIC-CHECKBOX-TEST-ID"
+      type="checkbox"
+    />
+  </label>
+</div>
+`;
+
+exports[`<BasicCheckbox/> should render undefined label as '' 2`] = `
+<div>
+  <label
+    class=""
+  >
+    TEST
+    <input
+      class="ml-2"
+      data-testid="BASIC-CHECKBOX-TEST-ID"
+      type="checkbox"
+    />
+  </label>
+</div>
+`;
+
+exports[`<BasicCheckbox/> should turn off by click 1`] = `
+<div>
+  <label
+    class=""
+  >
+    TEST
+    <input
+      checked=""
+      class="ml-2"
+      data-testid="BASIC-CHECKBOX-TEST-ID"
+      type="checkbox"
+    />
+  </label>
+</div>
+`;
+
+exports[`<BasicCheckbox/> should turn off by click 2`] = `
+<div>
+  <label
+    class=""
+  >
+    TEST
+    <input
+      checked=""
+      class="ml-2"
+      data-testid="BASIC-CHECKBOX-TEST-ID"
+      type="checkbox"
+    />
+  </label>
+</div>
+`;
+
+exports[`<BasicCheckbox/> should turn on by click 1`] = `
+<div>
+  <label
+    class=""
+  >
+    TEST
+    <input
+      class="ml-2"
+      data-testid="BASIC-CHECKBOX-TEST-ID"
+      type="checkbox"
+    />
+  </label>
+</div>
+`;
+
+exports[`<BasicCheckbox/> should turn on by click 2`] = `
+<div>
+  <label
+    class=""
+  >
+    TEST
+    <input
+      class="ml-2"
+      data-testid="BASIC-CHECKBOX-TEST-ID"
       type="checkbox"
     />
   </label>

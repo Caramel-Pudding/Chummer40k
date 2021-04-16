@@ -10,3 +10,36 @@ exports[`<BasicShowBox /> Basic snapshot test 1`] = `
   </button>
 </div>
 `;
+
+exports[`<BasicShowBox /> should render proper label 1`] = `
+<div>
+  <button
+    class="p-1 border border-black cursor-pointer"
+    type="button"
+  >
+    TEST
+  </button>
+</div>
+`;
+
+exports[`<BasicShowBox /> should render undefined label as '' 1`] = `
+<div>
+  <button
+    class="p-1 border border-black cursor-pointer"
+    type="button"
+  >
+    TEST
+  </button>
+</div>
+`;
+
+exports[`<BasicShowBox /> should render undefined label as '' 2`] = `
+<div>
+  <button
+    class="p-1 border border-black cursor-pointer"
+    type="button"
+  >
+    TEST
+  </button>
+</div>
+`;
