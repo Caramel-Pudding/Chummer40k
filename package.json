@@ -41,11 +41,6 @@
   "dependencies": {
     "@prisma/client": "^2.20.1",
     "@reduxjs/toolkit": "^1.5.1",
-    "@storybook/addon-actions": "^6.2.8",
-    "@storybook/addon-essentials": "^6.2.8",
-    "@storybook/addon-links": "^6.2.8",
-    "@storybook/addon-postcss": "^2.0.0",
-    "@storybook/react": "^6.2.8",
     "@welldone-software/why-did-you-render": "^6.1.1",
     "autoprefixer": "^10.2.5",
     "axios": "^0.21.1",
@@ -78,6 +73,11 @@
     "@types/react-redux": "^7.1.16",
     "@typescript-eslint/eslint-plugin": "^4.20.0",
     "@typescript-eslint/parser": "^4.20.0",
+    "@storybook/addon-actions": "^6.2.9",
+    "@storybook/addon-essentials": "^6.2.8",
+    "@storybook/addon-links": "^6.2.8",
+    "@storybook/addon-postcss": "^2.0.0",
+    "@storybook/react": "^6.2.8",
     "babel-loader": "^8.2.2",
     "eslint": "^7.23.0",
     "eslint-config-airbnb-typescript": "12.3.1",
@@ -96,6 +96,7 @@
     "simple-git-hooks": "^2.2.0",
     "stylelint": "^13.12.0",
     "stylelint-config-standard": "^21.0.0",
-    "typescript": "^4.2.3"
+    "typescript": "^4.2.3",
+    "webpack": "^4.0.0"
   }
 }
