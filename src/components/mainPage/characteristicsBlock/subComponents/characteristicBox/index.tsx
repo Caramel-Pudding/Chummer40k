@@ -1,14 +1,12 @@
-import React, { useState, FC, memo, FormEvent } from "react";
-import { MdModeEdit } from "react-icons/md";
+import React, { useState, FC, memo } from "react";
 
 import classnames from "classnames";
 
 import {
   createCharacteristicTotalBonusSelectorInstance,
   createCharacteristicTotalValueSelectorInstance,
-  setValue,
 } from "@/redux/features/characteristics/slice";
-import { useAppDispatch, useAppSelector } from "@/hooks/redux";
+import { useAppSelector } from "@/hooks/redux";
 import { BCCharacteristic } from "@/redux/features/characteristics/consts";
 
 import { BasicShowBox } from "@/components/shared/BasicShowBox";
