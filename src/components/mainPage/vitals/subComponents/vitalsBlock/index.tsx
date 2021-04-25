@@ -1,7 +1,7 @@
 import React, { FC, memo } from "react";
 import classnames from "classnames";
 
-import { MdModeEdit } from "react-icons/md";
+import { MdArrowDropUp, MdArrowDropDown } from "react-icons/md";
 import { BasicShowBox } from "@/components/shared/BasicShowBox";
 
 interface VitalsBlockProps {
@@ -22,6 +22,8 @@ export const VitalsBlock: FC<VitalsBlockProps> = memo(
     editClickHandler,
     boxClasses = "",
   }) => {
+    const arrowSize = 22;
+
     return (
       <label
         className={classnames(
@@ -40,7 +42,7 @@ export const VitalsBlock: FC<VitalsBlockProps> = memo(
             type="button"
             onClick={incrementValue}
           >
-            +
+            <MdArrowDropUp size={arrowSize} />
           </button>
           <BasicShowBox
             boxClasses={classnames("w-12", "mb-1", boxClasses)}
@@ -52,7 +54,7 @@ export const VitalsBlock: FC<VitalsBlockProps> = memo(
             type="button"
             onClick={decrementValue}
           >
-            -
+            <MdArrowDropDown size={arrowSize} />
           </button>
         </div>
       </label>
