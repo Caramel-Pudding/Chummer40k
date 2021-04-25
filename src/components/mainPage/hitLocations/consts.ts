@@ -9,5 +9,5 @@ export const xPositions: Record<string, LeftPosition> = {
 export const yPositions: Record<string, TopPosition> = {
   top: "top-8",
   center: "top-24",
-  bottom: "top-52",
+  bottom: "top-44",
 };

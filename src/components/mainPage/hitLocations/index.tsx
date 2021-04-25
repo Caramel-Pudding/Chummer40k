@@ -23,7 +23,7 @@ export const HitLocations: FC = memo(() => {
             ? "/images/astartesAnatomy.png"
             : "/images/humanAnatomy.jpg"
         }
-        width={175}
+        width={225}
       />
       <HitBox
         location={HitLocation.Head}
