@@ -1,0 +1,76 @@
+{
+    "compilerOptions": {
+      "target": "esnext",
+      "lib": [
+        "dom",
+        "dom.iterable",
+        "esnext"
+      ],
+      "allowJs": true,
+      "allowSyntheticDefaultImports": true,
+      "skipLibCheck": true,
+      "strict": true,
+      "forceConsistentCasingInFileNames": true,
+      "noEmit": true,
+      "esModuleInterop": true,
+      // TODO: Enable after postCSS d.ts generator
+      //"noPropertyAccessFromIndexSignature": true,
+      //"noUncheckedIndexedAccess": true,
+      "noUnusedLocals": true,
+      "module": "esnext",
+      "moduleResolution": "node",
+      "resolveJsonModule": true,
+      "isolatedModules": true,
+      "typeRoots": [
+        "types",
+        "node_modules/@types"
+      ],
+      "baseUrl": "./src",
+      "paths": {
+        "@/components/*": [
+          "components/*"
+        ],
+        "@/hooks/*": [
+          "hooks/*"
+        ],
+        "@/network/*": [
+          "network/*"
+        ],
+        "@/pages/*": [
+          "pages/*"
+        ],
+        "@/prisma/*": [
+          "prisma/*"
+        ],
+        "@/redux/*": [
+          "redux/*"
+        ],
+        "@/styles/*": [
+          "styles/*"
+        ],
+        "@/types/*": [
+          "types/*"
+        ],
+        "@/utilities/*": [
+          "utilities/*"
+        ],
+        "@/tests/*": [
+          "__tests__/*"
+        ],
+        "@/debug/*": [
+          "__debug__/*"
+        ]
+      }
+    },
+    "include": [
+      "next-env.d.ts",
+      "**/*.js",
+      "**/*.jsx",
+      "**/*.ts",
+      "**/*.tsx"
+    ],
+    "exclude": [
+      "node_modules"
+    ]
+  }
+  

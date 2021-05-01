@@ -1,13 +1,8 @@
 import { createSlice, PayloadAction, createSelector } from "@reduxjs/toolkit";
 
-import { RootState } from "@/redux/store";
 import { BCCharacteristic } from "@/redux/features/characteristics/consts";
 import { createCharacteristicTotalBonusSelectorInstance } from "@/redux/features/characteristics/slice";
-import {
-  validateMin,
-  validateMax,
-  validateMinMax,
-} from "@/utilities/validation";
+import { validateMin, validateMinMax } from "@/utilities/validation";
 import { HitLocation } from "./consts";
 import { VitalsState, InfamyPointsChangePayload } from "./types";
 

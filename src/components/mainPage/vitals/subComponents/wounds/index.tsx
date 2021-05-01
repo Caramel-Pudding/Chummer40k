@@ -1,5 +1,4 @@
 import React, { FC, memo, useState } from "react";
-import classnames from "classnames";
 
 import { useAppSelector, useAppDispatch } from "@/hooks/redux";
 import { changeCurrentWounds } from "@/redux/features/vitals/slice";

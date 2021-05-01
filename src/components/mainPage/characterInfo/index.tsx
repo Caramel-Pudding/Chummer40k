@@ -1,5 +1,4 @@
 import React, { FC, memo } from "react";
-import classnames from "classnames";
 
 import { Descriptos } from "./descriptors";
 import { MainIdentifiers } from "./mainIdentifiers";

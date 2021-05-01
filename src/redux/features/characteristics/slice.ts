@@ -3,11 +3,7 @@ import { createSlice, PayloadAction, createSelector } from "@reduxjs/toolkit";
 // eslint-disable-next-line import/no-cycle
 import { RootState } from "@/redux/store";
 import { convertStringEnumToArrayOfNames } from "@/utilities/arrays";
-import {
-  validateMin,
-  validateMax,
-  validateMinMax,
-} from "@/utilities/validation";
+import { validateMinMax } from "@/utilities/validation";
 
 import { CharacteristicInternals, CharacteristicChangePayload } from "./types";
 import { BCCharacteristic } from "./consts";

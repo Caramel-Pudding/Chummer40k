@@ -13,27 +13,25 @@ interface HitBoxProps {
   readonly location: HitLocation;
 }
 
-export const HitBox: FC<HitBoxProps> = memo(
-  ({ location, xPosition, yLocation }) => {
-    const toughnessTotalBonus = useAppSelector(
-      createCharacteristicTotalBonusSelectorInstance(BCCharacteristic.Toughness)
-    );
-    return (
-      <div
-        className={classnames(
-          "absolute",
-          "border-2",
-          "border-white-600",
-          "bg-gray-600",
-          "p-1",
-          "cursor-pointer",
-          "text-white",
-          xPosition,
-          yLocation
-        )}
-      >
-        {toughnessTotalBonus}
-      </div>
-    );
-  }
-);
+export const HitBox: FC<HitBoxProps> = memo(({ xPosition, yLocation }) => {
+  const toughnessTotalBonus = useAppSelector(
+    createCharacteristicTotalBonusSelectorInstance(BCCharacteristic.Toughness)
+  );
+  return (
+    <div
+      className={classnames(
+        "absolute",
+        "border-2",
+        "border-white-600",
+        "bg-gray-600",
+        "p-1",
+        "cursor-pointer",
+        "text-white",
+        xPosition,
+        yLocation
+      )}
+    >
+      {toughnessTotalBonus}
+    </div>
+  );
+});

@@ -2,6 +2,8 @@ const { resolve } = require('path');
 
 // Jest.config.js
 module.exports = {
+  preset: 'ts-jest',
+  testEnvironment: 'jsdom',
   // Automatically clear mock calls and instances between every test
   clearMocks: true,
   // The directory where Jest should output its coverage files
@@ -13,7 +15,7 @@ module.exports = {
     '\\.(css|scss)$': "identity-obj-proxy",
   },
   // Ignore the build directory
-  modulePathIgnorePatterns: ["<rootDir>/.next/"],
+  modulePathIgnorePatterns: ["<rootDir>/.next/",'/node_modules/','/.coverage'],
   testMatch: [
     "**/__tests__/**/?(*.)+(spec|test).[jt]s?(x)",
   ],
@@ -27,5 +29,13 @@ module.exports = {
     '^@/types/(.*)$': resolve(__dirname, './src/types/$1'),
     '^@/utilities/(.*)$': resolve(__dirname, './src/utilities/$1'),
     '\\.(css|scss)$': 'identity-obj-proxy'
+  },
+  globals: {
+    "ts-jest": {
+      tsconfig: '<rootDir>/tsconfig.test.json'
+    }
+  },
+  transform: {
+    "^.+\\.(js|ts|tsx)$": "ts-jest"
   },
 };

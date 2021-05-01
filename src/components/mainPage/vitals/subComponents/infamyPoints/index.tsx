@@ -1,5 +1,4 @@
 import React, { FC, memo } from "react";
-import classnames from "classnames";
 
 import { useAppDispatch, useAppSelector } from "@/hooks/redux";
 import { createCharacteristicTotalBonusSelectorInstance } from "@/redux/features/characteristics/slice";

@@ -2,7 +2,6 @@ import React, { FC, memo } from "react";
 import type { InventoryItem } from "@/redux/features/inventory/types";
 import classnames from "classnames";
 import { abbreviate } from "@/utilities/strings";
-import type { HitLocation } from ".prisma/client";
 
 import styles from "../../styles.module.css";
 

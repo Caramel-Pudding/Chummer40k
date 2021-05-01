@@ -1,8 +1,7 @@
 import React, { FC, memo } from "react";
 import Image from "next/image";
-import classnames from "classnames";
 
-import { useAppDispatch, useAppSelector } from "@/hooks/redux";
+import { useAppSelector } from "@/hooks/redux";
 import { Race } from "@/redux/features/descriptors/consts";
 
 import { HitLocation } from "@/redux/features/vitals/consts";

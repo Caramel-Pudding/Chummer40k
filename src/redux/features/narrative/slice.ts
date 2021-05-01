@@ -1,7 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 // eslint-disable-next-line import/no-cycle
-import { RootState } from "@/redux/store";
 import { NarrativeState, NarrativeChangePayload } from "./types";
 
 // Define the initial state using that type
