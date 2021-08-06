@@ -4,7 +4,7 @@ import { Story, Meta } from "@storybook/react";
 import {
   BasicMultiSelct,
   BasicMultiSelctProps,
-} from "../components/shared/BasicMultiSelct";
+} from "../components/shared/BasicMultiSelect";
 
 export default {
   title: "Basic/Multi Select",

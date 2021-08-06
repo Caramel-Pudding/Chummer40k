@@ -13,7 +13,7 @@ import { ItemType } from "@/redux/features/inventory/consts";
 import { inventory } from "@/network/react-query-keys";
 import { BasicSelct } from "@/components/shared/BasicSelct";
 import { BasicInput } from "@/components/shared/BasicInput";
-import { BasicMultiSelct } from "@/components/shared/BasicMultiSelct";
+import { BasicMultiSelct } from "@/components/shared/BasicMultiSelect";
 import { convertStringEnumToArrayOfNames } from "@/utilities/arrays";
 
 import styles from "../styles.module.css";
